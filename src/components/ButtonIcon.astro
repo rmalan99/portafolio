@@ -1,0 +1,21 @@
+---
+import Button from "../components/Button.astro";
+import useLang from "../utils/useLang";
+
+export interface Props {
+  variant?: "white" | "black";
+  href?: string;
+}
+
+const { variant, href } = Astro.props;
+const classVariant = variant === "white" ? "bg-white" : "bg-black";
+---
+
+<a
+  class={`w-9 h-9 rounded-full flex items-center justify-center ${classVariant}`}
+  href={href}
+>
+  <slot />
+</a>
+
+<style></style>

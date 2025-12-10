@@ -1,0 +1,84 @@
+---
+import Button from "../components/Button.astro";
+import useLang from "../utils/useLang";
+
+const { t } = useLang(Astro.url);
+---
+
+<header
+  class="max-w-7xl w-full mx-auto px-6 md:px-12 lg:px-16 xl:px-0 flex justify-center py-7 items-center md:justify-between"
+>
+  <div
+    class="font-bold text-lg uppercase"
+    itemscope
+    itemtype="https://schema.org/Person"
+  >
+    <span itemprop="name">{t("header.name")}</span>
+  </div>
+  <nav class="items-center gap-6 hidden md:flex" aria-label="Main navigation">
+    <a href="#start" class="nav-link uppercase text-sm">
+      {t("header.nav.start")}
+    </a>
+    <a href="#about" class="nav-link uppercase text-sm">
+      {t("header.nav.about")}
+    </a>
+    <a href="#projects" class="nav-link uppercase text-sm">
+      {t("header.nav.projects")}
+    </a>
+    <Button href="#contact" variant="black" size="sm">
+      {t("header.cta")}
+    </Button>
+  </nav>
+</header>
+
+<style>
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    margin-top: 0.25rem;
+    transition: color 0.3s ease;
+  }
+
+  /* Línea horizontal inferior */
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition:
+      width 0.3s ease,
+      left 0.3s ease;
+  }
+
+  /* Línea vertical derecha */
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    right: -0.5rem;
+    bottom: 0;
+    width: 2px;
+    height: 0;
+    background-color: currentColor;
+    transition: height 0.3s ease 0.1s;
+    opacity: 0;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:active::after {
+    width: 100%;
+    left: 0;
+  }
+
+  .nav-link:hover::before,
+  .nav-link:active::before {
+    height: 100%;
+    opacity: 1;
+  }
+
+  .nav-link:hover {
+    color: #000;
+  }
+</style>

@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* ============================================
+   Theme Configuration - Tailwind CSS v4
+   ============================================ */
+
+@theme {
+	/* Fonts */
+	--font-primary: "Inter", sans-serif;
+	--font-secondary: "Homemade Apple", cursive;
+	--font-display: "Inter", sans-serif;
+	
+	
+	/* Background Colors - Light Mode */
+	--color-bg-1: #F4EEE2;
+	--color-bg-2: #E7E1D5;
+	--color-bg-3: #DBD5CB;
+	
+	/* Text Colors - Light Mode */
+	--color-text-1: #111111;
+	--color-text-2: #3D3D3F;
+	
+	/* Button Colors - Light Mode */
+	--color-button-text: #FFFFFF;
+	--color-button-bg: #111111;
+	
+	/* Dark Mode Colors */
+	--color-bg-1-dark: #1a1a1a;
+	--color-bg-2-dark: #2a2a2a;
+	--color-bg-3-dark: #3a3a3a;
+	--color-text-1-dark: #F4EEE2;
+	--color-text-2-dark: #E7E1D5;
+	--color-button-text-dark: #111111;
+	--color-button-bg-dark: #F4EEE2;
+	
+	/* Easing Functions */
+	--ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+	--ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+	--ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   CSS Variables for Runtime Switching
+   ============================================ */
+
+:root {
+	--bg-1: var(--color-bg-1);
+	--bg-2: var(--color-bg-2);
+	--bg-3: var(--color-bg-3);
+	--text-1: var(--color-text-1);
+	--text-2: var(--color-text-2);
+	--button-text: var(--color-button-text);
+	--button-bg: var(--color-button-bg);
+}
+
+/* Dark Mode Override */
+[data-theme="dark"] {
+	--bg-1: var(--color-bg-1-dark);
+	--bg-2: var(--color-bg-2-dark);
+	--bg-3: var(--color-bg-3-dark);
+	--text-1: var(--color-text-1-dark);
+	--text-2: var(--color-text-2-dark);
+	--button-text: var(--color-button-text-dark);
+	--button-bg: var(--color-button-bg-dark);
+}
+
+/* Automatic Dark Mode based on System Preference */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme="light"]) {
+		--bg-1: var(--color-bg-1-dark);
+		--bg-2: var(--color-bg-2-dark);
+		--bg-3: var(--color-bg-3-dark);
+		--text-1: var(--color-text-1-dark);
+		--text-2: var(--color-text-2-dark);
+		--button-text: var(--color-button-text-dark);
+		--button-bg: var(--color-button-bg-dark);
+	}
+}
+
+/* ============================================
+   Global Styles
+   ============================================ */
+
+
+body {
+	font-family: var(--font-primary);
+	background-color: var(--bg-1);
+	color: var(--text-1);
+	transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.bg-1 { background-color: var(--bg-1); }
+.bg-2 { background-color: var(--bg-2); }
+.bg-3 { background-color: var(--bg-3); }
+
+.text-1 { color: var(--text-1); }
+.text-2 { color: var(--text-2); }
+
+.font-primary { font-family: var(--font-primary); }
+.font-secondary { font-family: var(--font-secondary); }
+
+/* Button Styles */
+
