@@ -1,6 +1,7 @@
 ---
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+
+import Footer from "../components/layouts/Footer.astro";
+import Header from "../components/layouts/Header.astro";
 import "../styles/global.css";
 import useLang from "../utils/useLang";
 
@@ -70,7 +71,7 @@ const ogImage = new URL("/og-image.jpg", Astro.site);
   </head>
   <body class="min-h-screen grid grid-rows-[auto_1fr_auto] ">
     <Header />
-    <main class="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 xl:px-0 ">
+    <main class="w-full  mx-auto  ">
       <slot />
     </main>
     <Footer />

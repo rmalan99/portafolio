@@ -1,0 +1,48 @@
+---
+import Button from "@components/buttons/Button.astro";
+import ButtonIcon from "@components/buttons/ButtonIcon.astro";
+import Github from "@assets/icons/github.svg";
+import Linkedin from "@assets/icons/linkedin.svg";
+import sources from "@consts/sources";
+---
+
+<section
+  class="h-dvh w-full mx-auto px-6 sm:px-10 xl:px-0 sm:max-w-7xl grid grid-cols-1 sm:grid-cols-2 justify-center items-center"
+>
+  <div
+    class="flex flex-col items-center justify-center gap-4 order-2 sm:order-1"
+  >
+    <div class="flex flex-col gap-4">
+      <h3 class="text-xl md:text-2xl lg:text-4xl font-bold">
+        ¡HOLA!, SOY <span class="text-3">ALAN HIDALGO</span>,
+        <br /> FRONTEND DEVELOPER
+      </h3>
+      <div class="flex items-center gap-3">
+        <Button href="" variant="black" size="sm">CONTÁCTAME</Button>
+        <div class="flex items-center gap-3">
+          <ButtonIcon variant="black" href={sources.github}>
+            <Github />
+          </ButtonIcon>
+          <ButtonIcon variant="black" href={sources.linkedin}>
+            <Linkedin />
+          </ButtonIcon>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-center order-1 sm:order-2">
+    <img
+      class="size-3/4 sm:size-3/4 object-contain mask-linear bg-amber-300"
+      src="images/alan_hidalgo.webp"
+      alt="Alan Hidalgo"
+    />
+  </div>
+</section>
+
+<style>
+  .mask-linear {
+    mask-image: linear-gradient(black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(black 90%, transparent 100%);
+  }
+</style>

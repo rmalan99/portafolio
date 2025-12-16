@@ -1,0 +1,59 @@
+---
+import Button from "@components/buttons/Button.astro";
+import Sword from "@assets/icons/sword.svg";
+import Stats from "@assets/icons/stats.svg";
+import Work from "@assets/icons/work.svg";
+const softSkills = [
+  {
+    icon: Work,
+    title: "Trabajo en equipo",
+    description:
+      "Construyo soluciones junto a equipos multidisciplinarios para entregar productos de calidad.",
+  },
+  {
+    icon: Stats,
+    title: "Adaptabilidad al cambio",
+    description:
+      "Aprendo y adopto nuevas tecnologías con rapidez para optimizar cada proyecto.",
+  },
+  {
+    icon: Sword,
+    title: "Orientación a resultados",
+    description:
+      "Desarrollo interfaces funcionales que mejoran la experiencia y generan valor real.",
+  },
+];
+---
+
+<section class="w-full h-vh bg-2">
+  <div
+    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-7"
+  >
+    <h4 class="text-3xl font-bold text-center">Sobre mí</h4>
+    <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
+      Desarrollador web especializado en crear interfaces rápidas, modernas y
+      orientadas al usuario. Domino Angular, React y tecnologías frontend que
+      impulsan productos digitales de alto rendimiento.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      {
+        softSkills.map((skill) => (
+          <div class="flex flex-col gap-3 bg-3 p-6 rounded-sm">
+            <div class="flex items-center gap-2">
+              <skill.icon />
+              <h6 class="text-md font-bold">{skill.title}</h6>
+            </div>
+            <p class="text-sm">{skill.description}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex items-center justify-end gap-7">
+      <Button href="#contact" variant="black" size="sm"> Descargar CV </Button>
+
+      <span class="font-secondary"> Alan Hidalgo </span>
+    </div>
+  </div>
+</section>
+
+<style></style>

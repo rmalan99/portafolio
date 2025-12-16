@@ -1,14 +1,12 @@
 ---
-import Button from "../components/Button.astro";
-import useLang from "../utils/useLang";
-
 export interface Props {
   variant?: "white" | "black";
   href?: string;
 }
 
 const { variant, href } = Astro.props;
-const classVariant = variant === "white" ? "bg-white" : "bg-black";
+const classVariant =
+  variant === "white" ? "bg-white text-black" : "bg-black text-white";
 ---
 
 <a
@@ -18,4 +16,11 @@ const classVariant = variant === "white" ? "bg-white" : "bg-black";
   <slot />
 </a>
 
-<style></style>
+<style>
+  a {
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>

@@ -1,0 +1,147 @@
+---
+import HtmlIcon from "@assets/icons/tecnologys/html.svg";
+import JavaScriptIcon from "@assets/icons/tecnologys/javascript.svg";
+import AngularIcon from "@assets/icons/tecnologys/angular.svg";
+import ReactIcon from "@assets/icons/tecnologys/react.svg";
+import TypeScriptIcon from "@assets/icons/tecnologys/typescript.svg";
+import NodejsIcon from "@assets/icons/tecnologys/nodejs.svg";
+import VuejsIcon from "@assets/icons/tecnologys/vuejs.svg";
+import IonicIcon from "@assets/icons/tecnologys/ionic.svg";
+import CapacitorIcon from "@assets/icons/tecnologys/capacitor.svg";
+import ReactNativeIcon from "@assets/icons/tecnologys/reactnative.svg";
+import GitIcon from "@assets/icons/tecnologys/git.svg";
+import FigmaIcon from "@assets/icons/tecnologys/figma.svg";
+import AstroIcon from "@assets/icons/tecnologys/astro.svg";
+import TailwindcssIcon from "@assets/icons/tecnologys/tailwind.svg";
+import NextjsIcon from "@assets/icons/tecnologys/nextjs.svg";
+import Sword from "@assets/icons/sword.svg";
+import Mobile from "@assets/icons/mobile.svg";
+import Desktop from "@assets/icons/desktop.svg";
+
+const hardSkills = [
+  {
+    icon: ReactIcon,
+    title: "React",
+  },
+  {
+    icon: AngularIcon,
+    title: "Angular",
+  },
+  {
+    icon: VuejsIcon,
+    title: "Vue.js",
+  },
+  {
+    icon: JavaScriptIcon,
+    title: "JavaScript",
+  },
+  {
+    icon: TypeScriptIcon,
+    title: "TypeScript",
+  },
+  {
+    icon: HtmlIcon,
+    title: "HTML",
+  },
+  {
+    icon: NodejsIcon,
+    title: "Node.js",
+  },
+  {
+    icon: IonicIcon,
+    title: "Ionic",
+  },
+  {
+    icon: CapacitorIcon,
+    title: "Capacitor",
+  },
+
+  {
+    icon: GitIcon,
+    title: "Git",
+  },
+  {
+    icon: FigmaIcon,
+    title: "Figma",
+  },
+  {
+    icon: AstroIcon,
+    title: "Astro",
+  },
+  {
+    icon: TailwindcssIcon,
+    title: "Tailwind CSS",
+  },
+  {
+    icon: NextjsIcon,
+    title: "Next.js",
+  },
+  {
+    icon: ReactNativeIcon,
+    title: "React Native",
+  },
+];
+
+const hardSkillsGroup = [
+  {
+    icon: Desktop,
+    title: "Web development",
+    description:
+      "Desarrollo interfaces rápidas, escalables y enfocadas en la experiencia del usuario usando frameworks modernos.",
+  },
+  {
+    icon: Mobile,
+    title: "Mobile development",
+    description:
+      "Creo aplicaciones móviles fluidas y de alto rendimiento con tecnologías híbridas como React Native e Ionic.",
+  },
+  {
+    icon: Sword,
+    title: "Enfoque adaptativo",
+    description:
+      "Me adapto a nuevos entornos, frameworks y retos para ofrecer soluciones eficientes y orientadas a resultados.",
+  },
+];
+---
+
+<section class="w-full h-vh">
+  <div
+    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-7"
+  >
+    <h4 class="text-3xl font-bold text-center">Habilidades técnicas</h4>
+    <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
+      Tecnologías y capacidades que utilizo para crear productos web rápidos,
+      modernos y centrados en el usuario.
+    </p>
+
+    <div
+      class="grid grid-cols-1fr lg:grid-cols-[1fr_minmax(200px,0.5fr)] gap-3"
+    >
+      <div class="grid grid-cols-5 gap-4 grid-rows-4">
+        {
+          hardSkills.map((skill) => (
+            <div class="flex bg-3 size-20 items-center justify-center rounded-sm">
+              <skill.icon class="size-12" />
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-3">
+        {
+          hardSkillsGroup.map((skill) => (
+            <div class="flex flex-col gap-3 bg-3 p-6 rounded-sm">
+              <div class="flex items-center gap-2">
+                <skill.icon class="size-5" />
+                <h6 class="text-md font-bold">{skill.title}</h6>
+              </div>
+              <p class="text-sm">{skill.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style is:inline></style>
