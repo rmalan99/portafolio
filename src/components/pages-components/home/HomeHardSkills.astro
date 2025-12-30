@@ -1,4 +1,5 @@
 ---
+import useLang from "@utils/useLang";
 import HtmlIcon from "@assets/icons/tecnologys/html.svg";
 import JavaScriptIcon from "@assets/icons/tecnologys/javascript.svg";
 import AngularIcon from "@assets/icons/tecnologys/angular.svg";
@@ -17,6 +18,8 @@ import NextjsIcon from "@assets/icons/tecnologys/nextjs.svg";
 import Sword from "@assets/icons/sword.svg";
 import Mobile from "@assets/icons/mobile.svg";
 import Desktop from "@assets/icons/desktop.svg";
+
+const { t } = useLang(Astro.url);
 
 const hardSkills = [
   {
@@ -85,21 +88,18 @@ const hardSkills = [
 const hardSkillsGroup = [
   {
     icon: Desktop,
-    title: "Web development",
-    description:
-      "Desarrollo interfaces rápidas, escalables y enfocadas en la experiencia del usuario usando frameworks modernos.",
+    titleKey: "skills.groups.web.title",
+    descriptionKey: "skills.groups.web.description",
   },
   {
     icon: Mobile,
-    title: "Mobile development",
-    description:
-      "Creo aplicaciones móviles fluidas y de alto rendimiento con tecnologías híbridas como React Native e Ionic.",
+    titleKey: "skills.groups.mobile.title",
+    descriptionKey: "skills.groups.mobile.description",
   },
   {
     icon: Sword,
-    title: "Enfoque adaptativo",
-    description:
-      "Me adapto a nuevos entornos, frameworks y retos para ofrecer soluciones eficientes y orientadas a resultados.",
+    titleKey: "skills.groups.adaptive.title",
+    descriptionKey: "skills.groups.adaptive.description",
   },
 ];
 ---
@@ -108,22 +108,32 @@ const hardSkillsGroup = [
   <div
     class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-7"
   >
-    <h4 class="text-3xl font-bold text-center">Habilidades técnicas</h4>
+    <h4 class="text-3xl font-bold text-center">{t("skills.title")}</h4>
     <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
-      Tecnologías y capacidades que utilizo para crear productos web rápidos,
-      modernos y centrados en el usuario.
+      {t("skills.description")}
     </p>
 
     <div
       class="grid grid-cols-1fr lg:grid-cols-[1fr_minmax(200px,0.5fr)] gap-3"
     >
-      <div class="grid grid-cols-5 gap-4 grid-rows-4">
+      <div class="tech-matrix" data-tech-grid>
         {
-          hardSkills.map((skill) => (
-            <div class="flex bg-3 size-20 items-center justify-center rounded-sm">
-              <skill.icon class="size-12" />
-            </div>
-          ))
+          hardSkills.map((skill, index) => {
+            const row = Math.floor(index / 5) + 1;
+            const column = (index % 5) + 1;
+
+            return (
+              <div
+                class="tech-cell flex bg-3 size-20 items-center justify-center rounded-sm"
+                data-tech-cell
+                data-row={row}
+                data-col={column}
+                aria-label={skill.title}
+              >
+                <skill.icon class="size-12" />
+              </div>
+            );
+          })
         }
       </div>
 
@@ -133,9 +143,9 @@ const hardSkillsGroup = [
             <div class="flex flex-col gap-3 bg-3 p-6 rounded-sm">
               <div class="flex items-center gap-2">
                 <skill.icon class="size-5" />
-                <h6 class="text-md font-bold">{skill.title}</h6>
+                <h6 class="text-md font-bold">{t(skill.titleKey)}</h6>
               </div>
-              <p class="text-sm">{skill.description}</p>
+              <p class="text-sm">{t(skill.descriptionKey)}</p>
             </div>
           ))
         }
@@ -144,4 +154,113 @@ const hardSkillsGroup = [
   </div>
 </section>
 
-<style is:inline></style>
+<style is:inline>
+  .tech-matrix {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    overflow: hidden;
+  }
+
+  .tech-cell {
+    transition: transform 900ms ease;
+  }
+
+  .tech-cell svg {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  @media (max-width: 640px) {
+    .tech-matrix {
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+<script>
+  if (typeof window !== "undefined") {
+    const grid = document.querySelector("[data-tech-grid]");
+    const cells = grid
+      ? Array.from(grid.querySelectorAll("[data-tech-cell]"))
+      : [];
+
+    const path = [0, 1, 2, 3, 4, 9, 8, 7, 6, 5, 10, 11, 12, 13, 14];
+    const animationDuration = 900;
+    const travelOffset = 115;
+    let isAnimating = false;
+
+    const rotateMatrixContent = () => {
+      const lastIndex = path[path.length - 1];
+      const lastContent =
+        cells[lastIndex].firstElementChild?.cloneNode(true) ?? null;
+
+      for (let i = path.length - 1; i > 0; i -= 1) {
+        const current = cells[path[i]];
+        const previous = cells[path[i - 1]];
+        const content = previous.firstElementChild?.cloneNode(true);
+        if (content) {
+          current.replaceChildren(content);
+        }
+      }
+
+      if (lastContent) {
+        cells[path[0]].replaceChildren(lastContent);
+      }
+    };
+
+    const shiftOnce = () => {
+      if (isAnimating || !grid || cells.length !== path.length) return;
+      isAnimating = true;
+
+      cells.forEach((cell) => {
+        const row = Number(cell.dataset.row);
+        const direction = row === 2 ? -1 : 1;
+        cell.style.transition = `transform ${animationDuration}ms ease`;
+        cell.style.transform = `translateX(${direction * travelOffset}%)`;
+      });
+
+      window.setTimeout(() => {
+        rotateMatrixContent();
+
+        cells.forEach((cell) => {
+          const row = Number(cell.dataset.row);
+          const direction = row === 2 ? -1 : 1;
+          cell.style.transition = "none";
+          cell.style.transform = `translateX(${direction * -travelOffset}%)`;
+        });
+
+        window.requestAnimationFrame(() => {
+          cells.forEach((cell) => {
+            const row = Number(cell.dataset.row);
+            const direction = row === 2 ? -1 : 1;
+            cell.style.transition = `transform ${animationDuration}ms ease`;
+            cell.style.transform = "translateX(0)";
+          });
+
+          window.setTimeout(() => {
+            isAnimating = false;
+          }, animationDuration);
+        });
+      }, animationDuration);
+    };
+
+    const createInterval = () =>
+      window.setInterval(shiftOnce, animationDuration * 2.4);
+
+    let intervalId = createInterval();
+
+    window.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+        return;
+      }
+
+      if (!intervalId) {
+        intervalId = createInterval();
+      }
+    });
+  }
+</script>

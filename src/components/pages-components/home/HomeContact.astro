@@ -1,27 +1,29 @@
 ---
+import useLang from "@utils/useLang";
 import ButtonIcon from "@components/buttons/ButtonIcon.astro";
 import sources from "@consts/sources";
 import Github from "@assets/icons/github.svg";
 import Linkedin from "@assets/icons/linkedin.svg";
 import Email from "@assets/icons/email.svg";
 import Button from "@components/buttons/Button.astro";
+
+const { t } = useLang(Astro.url);
 ---
 
-<section class="w-full h-vh">
+<section id="contact" class="w-full h-vh">
   <div
     class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-7"
   >
-    <h4 class="text-3xl font-bold text-center">Hablemos de tu proyecto</h4>
+    <h4 class="text-3xl font-bold text-center">{t("contact.sectionTitle")}</h4>
     <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
-      Construyamos juntos solución moderna, eficiente y escalable para impulsar
-      tu negocio.
+      {t("contact.sectionDescription")}
     </p>
 
     <div class="grid gap-7 grid-cols-[1fr_1px_1fr] items-center justify-center">
       <div class="w-full flex items-center justify-center">
         <div class="flex flex-col gap-2">
           <h6 class="text-2xl font-bold">
-            Estemos en <span class="text-3">contacto</span>
+            {t("contact.stayInTouchTitle")}
           </h6>
           <p class="text-md">Alan Hidalgo</p>
           <p class="text-md">alan.hidalgo@outlook.com</p>
@@ -42,24 +44,24 @@ import Button from "@components/buttons/Button.astro";
       <div class="w-[1px] h-full bg-2"></div>
       <div class="w-3/4 md:w-full flex flex-col gap-3 p-4 mx-auto">
         <h6 class="text-2xl font-bold mb-2">
-          Envíame un <span class="text-3">mensaje</span>
+          {t("contact.form.title")}
         </h6>
         <form action="" class="grid grid-cols-1 gap-5">
           <input
             class="w-full p-2 border-2 border-black rounded-lg"
             type="text"
-            placeholder="Nombre"
+            placeholder={t("contact.form.namePlaceholder")}
           />
           <input
             class="w-full p-2 border-2 border-black rounded-lg"
             type="email"
-            placeholder="Email"
+            placeholder={t("contact.form.emailPlaceholder")}
           />
           <textarea
             class="w-full p-2 border-2 border-black rounded-lg"
-            placeholder="Mensaje"></textarea>
+            placeholder={t("contact.form.messagePlaceholder")}></textarea>
           <Button type="submit" variant="black" size="sm" class="w-45"
-            >Enviar</Button
+            >{t("contact.form.submit")}</Button
           >
         </form>
       </div>

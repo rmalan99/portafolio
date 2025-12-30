@@ -1,27 +1,21 @@
 const projects = [
   {
-    name: "REMAXRD",
-    description:
-      "Migración completa a tecnologías modernas para lograr mayor velocidad, mejor SEO y una experiencia más fluida.",
+    key: "remaxrd",
     image: "https://placehold.co/600x400",
     link: "",
     isMockup: true,
   },
   {
-    name: "REMAXRD",
-    description:
-      "Migración completa a tecnologías modernas para lograr mayor velocidad, mejor SEO y una experiencia más fluida.",
+    key: "remaxrdMarketing",
     image: "https://placehold.co/600x400",
     link: "",
     isMockup: true,
   },
   {
-    name: "REMAXRD",
-    description:
-      "Migración completa a tecnologías modernas para lograr mayor velocidad, mejor SEO y una experiencia más fluida.",
+    key: "remaxrdInternal",
     image: "https://placehold.co/600x400",
     link: "",
-    isMockup: true,
+    isMockup: false,
   },
 ];
 
