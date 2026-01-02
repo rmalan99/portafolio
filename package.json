@@ -6,16 +6,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "test:e2e": "playwright test"
+    "astro": "astro"
   },
   "dependencies": {
     "@tabler/icons": "^3.35.0",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.0",
     "tailwindcss": "^4.1.17"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.50.1"
   }
 }

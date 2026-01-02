@@ -1,107 +1,8 @@
 ---
 import useLang from "@utils/useLang";
-import HtmlIcon from "@assets/icons/tecnologys/html.svg";
-import JavaScriptIcon from "@assets/icons/tecnologys/javascript.svg";
-import AngularIcon from "@assets/icons/tecnologys/angular.svg";
-import ReactIcon from "@assets/icons/tecnologys/react.svg";
-import TypeScriptIcon from "@assets/icons/tecnologys/typescript.svg";
-import NodejsIcon from "@assets/icons/tecnologys/nodejs.svg";
-import VuejsIcon from "@assets/icons/tecnologys/vuejs.svg";
-import IonicIcon from "@assets/icons/tecnologys/ionic.svg";
-import CapacitorIcon from "@assets/icons/tecnologys/capacitor.svg";
-import ReactNativeIcon from "@assets/icons/tecnologys/reactnative.svg";
-import GitIcon from "@assets/icons/tecnologys/git.svg";
-import FigmaIcon from "@assets/icons/tecnologys/figma.svg";
-import AstroIcon from "@assets/icons/tecnologys/astro.svg";
-import TailwindcssIcon from "@assets/icons/tecnologys/tailwind.svg";
-import NextjsIcon from "@assets/icons/tecnologys/nextjs.svg";
-import Sword from "@assets/icons/sword.svg";
-import Mobile from "@assets/icons/mobile.svg";
-import Desktop from "@assets/icons/desktop.svg";
+import { hardSkills, hardSkillsGroup } from "@consts/skills";
 
 const { t } = useLang(Astro.url);
-
-const hardSkills = [
-  {
-    icon: ReactIcon,
-    title: "React",
-  },
-  {
-    icon: AngularIcon,
-    title: "Angular",
-  },
-  {
-    icon: VuejsIcon,
-    title: "Vue.js",
-  },
-  {
-    icon: JavaScriptIcon,
-    title: "JavaScript",
-  },
-  {
-    icon: TypeScriptIcon,
-    title: "TypeScript",
-  },
-  {
-    icon: HtmlIcon,
-    title: "HTML",
-  },
-  {
-    icon: NodejsIcon,
-    title: "Node.js",
-  },
-  {
-    icon: IonicIcon,
-    title: "Ionic",
-  },
-  {
-    icon: CapacitorIcon,
-    title: "Capacitor",
-  },
-
-  {
-    icon: GitIcon,
-    title: "Git",
-  },
-  {
-    icon: FigmaIcon,
-    title: "Figma",
-  },
-  {
-    icon: AstroIcon,
-    title: "Astro",
-  },
-  {
-    icon: TailwindcssIcon,
-    title: "Tailwind CSS",
-  },
-  {
-    icon: NextjsIcon,
-    title: "Next.js",
-  },
-  {
-    icon: ReactNativeIcon,
-    title: "React Native",
-  },
-];
-
-const hardSkillsGroup = [
-  {
-    icon: Desktop,
-    titleKey: "skills.groups.web.title",
-    descriptionKey: "skills.groups.web.description",
-  },
-  {
-    icon: Mobile,
-    titleKey: "skills.groups.mobile.title",
-    descriptionKey: "skills.groups.mobile.description",
-  },
-  {
-    icon: Sword,
-    titleKey: "skills.groups.adaptive.title",
-    descriptionKey: "skills.groups.adaptive.description",
-  },
-];
 ---
 
 <section class="w-full h-vh">
@@ -163,13 +64,13 @@ const hardSkillsGroup = [
     overflow: hidden;
   }
 
-  .tech-cell {
-    transition: transform 900ms ease;
-  }
-
   .tech-cell svg {
     width: 3rem;
     height: 3rem;
+  }
+
+  .tech-cell {
+    will-change: transform;
   }
 
   @media (max-width: 640px) {
@@ -180,87 +81,136 @@ const hardSkillsGroup = [
 </style>
 
 <script>
-  if (typeof window !== "undefined") {
+  const initHardSkillsCarousel = () => {
     const grid = document.querySelector("[data-tech-grid]");
-    const cells = grid
-      ? Array.from(grid.querySelectorAll("[data-tech-cell]"))
-      : [];
+    if (!grid || grid.dataset.carouselInit === "true") return;
+    grid.dataset.carouselInit = "true";
 
-    const path = [0, 1, 2, 3, 4, 9, 8, 7, 6, 5, 10, 11, 12, 13, 14];
-    const animationDuration = 900;
-    const travelOffset = 115;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const stepMs = 2600;
+    const animationMs = 700;
+    const columns = 5;
+    const rows = 3;
     let isAnimating = false;
 
-    const rotateMatrixContent = () => {
-      const lastIndex = path[path.length - 1];
-      const lastContent =
-        cells[lastIndex].firstElementChild?.cloneNode(true) ?? null;
+    const getCells = () => Array.from(grid.children);
 
-      for (let i = path.length - 1; i > 0; i -= 1) {
-        const current = cells[path[i]];
-        const previous = cells[path[i - 1]];
-        const content = previous.firstElementChild?.cloneNode(true);
-        if (content) {
-          current.replaceChildren(content);
+    const capturePositions = () => {
+      const positions = new Map();
+      for (const cell of getCells()) {
+        positions.set(cell, cell.getBoundingClientRect());
+      }
+      return positions;
+    };
+
+    const applyFlip = (firstPositions) => {
+      const lastPositions = new Map();
+      for (const cell of getCells()) {
+        lastPositions.set(cell, cell.getBoundingClientRect());
+      }
+
+      for (const cell of getCells()) {
+        const firstRect = firstPositions.get(cell);
+        const lastRect = lastPositions.get(cell);
+        if (!firstRect || !lastRect) continue;
+
+        const dx = firstRect.left - lastRect.left;
+        const dy = firstRect.top - lastRect.top;
+        if (dx === 0 && dy === 0) continue;
+
+        cell.style.transition = "transform 0s";
+        cell.style.transform = `translate(${dx}px, ${dy}px)`;
+      }
+
+      requestAnimationFrame(() => {
+        for (const cell of getCells()) {
+          cell.style.transition = `transform ${animationMs}ms ease`;
+          cell.style.transform = "translate(0, 0)";
+        }
+      });
+    };
+
+    const step = () => {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      const firstPositions = capturePositions();
+      const cells = getCells();
+      if (cells.length === 0) return;
+
+      const rowSize = columns;
+      const totalRows = Math.min(rows, Math.ceil(cells.length / rowSize));
+      const rowDirections = ["left", "right", "left"];
+      const rowCells = [];
+      const outgoing = [];
+
+      for (let rowIndex = 0; rowIndex < totalRows; rowIndex += 1) {
+        const start = rowIndex * rowSize;
+        const currentRow = cells.slice(start, start + rowSize);
+        rowCells.push(currentRow);
+
+        const direction = rowDirections[rowIndex] ?? "left";
+        if (currentRow.length === 0) {
+          outgoing.push(null);
+          continue;
+        }
+        outgoing.push(
+          direction === "left"
+            ? currentRow[0]
+            : currentRow[currentRow.length - 1],
+        );
+      }
+
+      const incoming = [];
+      incoming[0] = outgoing[1] ?? null;
+      incoming[1] = outgoing[2] ?? null;
+      incoming[2] = outgoing[0] ?? null;
+
+      const reordered = [];
+      for (let rowIndex = 0; rowIndex < totalRows; rowIndex += 1) {
+        const currentRow = rowCells[rowIndex] ?? [];
+        const direction = rowDirections[rowIndex] ?? "left";
+        const incomingItem = incoming[rowIndex];
+
+        if (currentRow.length === 0) continue;
+
+        if (direction === "left") {
+          reordered.push(...currentRow.slice(1), incomingItem ?? currentRow[0]);
+        } else {
+          reordered.push(
+            incomingItem ?? currentRow[currentRow.length - 1],
+            ...currentRow.slice(0, -1),
+          );
         }
       }
 
-      if (lastContent) {
-        cells[path[0]].replaceChildren(lastContent);
+      for (let i = totalRows * rowSize; i < cells.length; i += 1) {
+        reordered.push(cells[i]);
       }
-    };
 
-    const shiftOnce = () => {
-      if (isAnimating || !grid || cells.length !== path.length) return;
-      isAnimating = true;
-
-      cells.forEach((cell) => {
-        const row = Number(cell.dataset.row);
-        const direction = row === 2 ? -1 : 1;
-        cell.style.transition = `transform ${animationDuration}ms ease`;
-        cell.style.transform = `translateX(${direction * travelOffset}%)`;
-      });
+      for (const cell of reordered) {
+        grid.appendChild(cell);
+      }
+      applyFlip(firstPositions);
 
       window.setTimeout(() => {
-        rotateMatrixContent();
-
-        cells.forEach((cell) => {
-          const row = Number(cell.dataset.row);
-          const direction = row === 2 ? -1 : 1;
-          cell.style.transition = "none";
-          cell.style.transform = `translateX(${direction * -travelOffset}%)`;
-        });
-
-        window.requestAnimationFrame(() => {
-          cells.forEach((cell) => {
-            const row = Number(cell.dataset.row);
-            const direction = row === 2 ? -1 : 1;
-            cell.style.transition = `transform ${animationDuration}ms ease`;
-            cell.style.transform = "translateX(0)";
-          });
-
-          window.setTimeout(() => {
-            isAnimating = false;
-          }, animationDuration);
-        });
-      }, animationDuration);
+        isAnimating = false;
+      }, animationMs);
     };
 
-    const createInterval = () =>
-      window.setInterval(shiftOnce, animationDuration * 2.4);
+    const intervalId = window.setInterval(step, stepMs);
+    grid.dataset.carouselIntervalId = String(intervalId);
+  };
 
-    let intervalId = createInterval();
-
-    window.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        window.clearInterval(intervalId);
-        intervalId = null;
-        return;
-      }
-
-      if (!intervalId) {
-        intervalId = createInterval();
-      }
-    });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHardSkillsCarousel);
+  } else {
+    initHardSkillsCarousel();
   }
+
+  document.addEventListener("astro:page-load", initHardSkillsCarousel);
 </script>

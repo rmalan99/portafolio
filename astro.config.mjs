@@ -8,5 +8,13 @@ export default defineConfig({
   site: 'https://alanhidalgo.dev', // Update this with your actual domain
   vite: {
     plugins: [tailwindcss()]
+  },
+  i18n: {
+    locales: ["es", "en"],
+    defaultLocale: "es",
+    routing: {
+      prefixDefaultLocale: true
+    },
+
   }
 });
