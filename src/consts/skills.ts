@@ -13,9 +13,11 @@ import FigmaIcon from "@assets/icons/tecnologys/figma.svg";
 import AstroIcon from "@assets/icons/tecnologys/astro.svg";
 import TailwindcssIcon from "@assets/icons/tecnologys/tailwind.svg";
 import NextjsIcon from "@assets/icons/tecnologys/nextjs.svg";
-import Sword from "@assets/icons/sword.svg";
 import Mobile from "@assets/icons/mobile.svg";
 import Desktop from "@assets/icons/desktop.svg";
+import Sword from "@assets/icons/sword.svg";
+import Stats from "@assets/icons/stats.svg";
+import Work from "@assets/icons/work.svg";
 
 interface SkillGroup {
   icon: any;
@@ -111,4 +113,23 @@ const hardSkillsGroup: SkillGroup[] = [
   },
 ];
 
-export { hardSkills, hardSkillsGroup };
+
+
+const softSkills: SkillGroup[] = [
+  {
+    icon: Work,
+    titleKey: "about.softSkills.teamwork.title",
+    descriptionKey: "about.softSkills.teamwork.description",
+  },
+  {
+    icon: Stats,
+    titleKey: "about.softSkills.adaptability.title",
+    descriptionKey: "about.softSkills.adaptability.description",
+  },
+  {
+    icon: Sword,
+    titleKey: "about.softSkills.results.title",
+    descriptionKey: "about.softSkills.results.description",
+  },
+];
+export { hardSkills, hardSkillsGroup, softSkills };

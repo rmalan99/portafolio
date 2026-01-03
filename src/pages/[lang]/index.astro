@@ -5,6 +5,10 @@ import HomeAbout from "@pages-components/home/HomeAbout.astro";
 import HomeHardSkills from "@pages-components/home/HomeHardSkills.astro";
 import HomeProject from "@pages-components/home/HomeProject.astro";
 import HomeContact from "@pages-components/home/HomeContact.astro";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
 ---
 
 <Layout>

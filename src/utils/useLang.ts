@@ -1,5 +1,5 @@
-import es from "../lang/es";
-import en from "../lang/en";
+import es from "../i18n/es";
+import en from "../i18n/en";
 
 const ui = {
   es,
@@ -7,14 +7,15 @@ const ui = {
 };
 
 export const AVAILABLE_LOCALES = Object.keys(ui);
+export type AvailableLocales = keyof typeof ui;
 
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split("/");
-  if (lang in ui) return lang as keyof typeof ui;
+  if (lang in ui) return lang as AvailableLocales;
   return "es";
 }
 
-const getTranslation = (lang: keyof typeof ui) => {
+const getTranslation = (lang: AvailableLocales) => {
   return ui[lang];
 };
 
@@ -36,6 +37,9 @@ function getNestedValue(obj: any, path: string): string {
 
   return typeof result === "string" ? result : path;
 }
+
+
+
 
 const useLang = (url: URL) => {
   const lang = getLangFromUrl(url);
