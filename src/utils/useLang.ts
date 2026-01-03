@@ -6,6 +6,8 @@ const ui = {
   en,
 };
 
+export const AVAILABLE_LOCALES = Object.keys(ui);
+
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split("/");
   if (lang in ui) return lang as keyof typeof ui;
