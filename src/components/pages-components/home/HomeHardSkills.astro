@@ -5,7 +5,7 @@ import { hardSkills, hardSkillsGroup } from "@consts/skills";
 const { t } = useLang(Astro.url);
 ---
 
-<section class="w-full h-vh p-10">
+<section class="w-full h-vh p-0 sm:p-10">
   <div
     class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-10"
   >
@@ -17,7 +17,7 @@ const { t } = useLang(Astro.url);
     </div>
 
     <div
-      class="grid grid-cols-1fr lg:grid-cols-[1fr_minmax(200px,0.5fr)] gap-3"
+      class="grid grid-cols-1fr lg:grid-cols-[1fr_minmax(200px,0.5fr)] gap-4"
     >
       <div class="tech-matrix" data-tech-grid>
         {
@@ -27,7 +27,7 @@ const { t } = useLang(Astro.url);
 
             return (
               <div
-                class="tech-cell flex bg-3 size-20 items-center justify-center rounded-sm"
+                class="tech-cell flex bg-3 size-16 sm:size-20 items-center justify-center rounded-sm"
                 data-tech-cell
                 data-row={row}
                 data-col={column}
