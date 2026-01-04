@@ -89,6 +89,17 @@ const es = {
       emailPlaceholder: "Email",
       messagePlaceholder: "Mensaje",
       submit: "Enviar",
+      errors: {
+        name: "Ingresa un nombre válido.",
+        email: "Ingresa un email válido.",
+        message: "Escribe un mensaje de al menos 10 caracteres.",
+      },
+      status: {
+        success: "Mensaje enviado correctamente.",
+        error: "No se pudo enviar el mensaje. Intenta de nuevo.",
+        invalid: "Revisa los campos marcados.",
+        recaptcha: "No se pudo verificar reCAPTCHA. Recarga e intenta de nuevo.",
+      },
     },
   },
   footer: {

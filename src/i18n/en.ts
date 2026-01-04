@@ -91,6 +91,17 @@ const en: Lang = {
       emailPlaceholder: "Email",
       messagePlaceholder: "Message",
       submit: "Send",
+      errors: {
+        name: "Please enter a valid name.",
+        email: "Please enter a valid email.",
+        message: "Please write at least 10 characters.",
+      },
+      status: {
+        success: "Message sent successfully.",
+        error: "Message could not be sent. Try again.",
+        invalid: "Check the highlighted fields.",
+        recaptcha: "reCAPTCHA verification failed. Reload and try again.",
+      },
     },
   },
   footer: {

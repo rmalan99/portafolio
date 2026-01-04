@@ -1,46 +1,49 @@
-# Astro Starter Kit: Basics
+# Alan Hidalgo Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+Personal portfolio built with Astro and TailwindCSS. It showcases featured projects, skills, and a contact form with client-side validation and reCAPTCHA v3 bot protection. The site is bilingual (ES/EN) and prioritizes performance, accessibility, and maintainability.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- Astro 5
+- TailwindCSS 4
+- TypeScript
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+  assets/           # Icons and images
+  components/       # Reusable UI
+  components/pages-components/home/ # Home sections
+  i18n/             # ES/EN dictionaries
+  layouts/          # Layout shells
+  pages/            # Astro routes
+  styles/           # Global styles
+  utils/            # Helpers and validations
+public/             # Static assets
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Scripts
 
-## 🧞 Commands
+```sh
+npm install
+npm run dev
+npm run build
+npm run preview
+```
 
-All commands are run from the root of the project, from a terminal:
+## Environment variables
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Create a `.env` file at the project root:
 
-## 👀 Want to learn more?
+```env
+ASTRO_PUBLIC_RECAPTCHA_SITE_KEY=
+RECAPTCHA_SECRET_KEY=
+RECAPTCHA_MIN_SCORE=0.5
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Notes
+
+- The contact form validates with Zod on client and server.
+- The endpoint lives at `src/pages/api/contact.ts`.
+- Translations are maintained in `src/i18n/es.ts` and `src/i18n/en.ts`.
