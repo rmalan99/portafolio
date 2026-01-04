@@ -6,6 +6,7 @@ export interface Props {
   type?: "button" | "submit" | "reset";
   class?: string;
   disabled?: boolean;
+  onclick?: () => void;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   type = "button",
   class: className = "",
   disabled = false,
+  onclick,
 } = Astro.props;
 
 const baseClasses =
@@ -44,7 +46,7 @@ const Tag = href ? "a" : "button";
       <slot />
     </a>
   ) : (
-    <button type={type} class={classes} disabled={disabled}>
+    <button onclick={onclick} type={type} class={classes} disabled={disabled}>
       <slot />
     </button>
   )

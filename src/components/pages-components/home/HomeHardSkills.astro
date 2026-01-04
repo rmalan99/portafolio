@@ -5,14 +5,16 @@ import { hardSkills, hardSkillsGroup } from "@consts/skills";
 const { t } = useLang(Astro.url);
 ---
 
-<section class="w-full h-vh">
+<section class="w-full h-vh p-10">
   <div
-    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-7"
+    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-10"
   >
-    <h4 class="text-3xl font-bold text-center">{t("skills.title")}</h4>
-    <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
-      {t("skills.description")}
-    </p>
+    <div class="flex flex-col gap-3">
+      <h4 class="text-3xl font-bold text-center">{t("skills.title")}</h4>
+      <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
+        {t("skills.description")}
+      </p>
+    </div>
 
     <div
       class="grid grid-cols-1fr lg:grid-cols-[1fr_minmax(200px,0.5fr)] gap-3"

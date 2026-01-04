@@ -10,7 +10,7 @@ const { t, lang } = useLang(Astro.url);
   class="w-full h-18 mx-auto px-6 sm:px-10 xl:px-0 flex items-center justify-between sm:max-w-7xl"
 >
   <div
-    class="font-bold text-xl uppercase mx-auto sm:mx-0"
+    class="font-bold text-xl uppercase mx-0"
     itemscope
     itemtype="https://schema.org/Person"
   >
@@ -29,8 +29,8 @@ const { t, lang } = useLang(Astro.url);
     <Button href="#contact" variant="black" size="sm">
       {t("header.cta")}
     </Button>
-    <LangSelector />
   </nav>
+  <LangSelector />
 </header>
 <style>
   .nav-link {

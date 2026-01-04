@@ -6,44 +6,51 @@ import Github from "@assets/icons/github.svg";
 import Linkedin from "@assets/icons/linkedin.svg";
 import Email from "@assets/icons/email.svg";
 import Button from "@components/buttons/Button.astro";
-
 const { t } = useLang(Astro.url);
 ---
 
-<section id="contact" class="w-full h-vh">
+<section id="contact" class="w-full h-vh p-10">
   <div
-    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-7"
+    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-10"
   >
-    <h4 class="text-3xl font-bold text-center">{t("contact.sectionTitle")}</h4>
-    <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
-      {t("contact.sectionDescription")}
-    </p>
+    <div class="flex flex-col gap-3">
+      <h4 class="text-3xl font-bold text-center">
+        {t("contact.sectionTitle")}
+      </h4>
+      <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
+        {t("contact.sectionDescription")}
+      </p>
+    </div>
 
-    <div class="grid gap-7 grid-cols-[1fr_1px_1fr] items-center justify-center">
+    <div
+      class="grid gap-7 grid-cols-1 sm:grid-cols-[1fr_1px_1fr] items-center justify-center"
+    >
       <div class="w-full flex items-center justify-center">
-        <div class="flex flex-col gap-2">
+        <div class="grid grid-cols-2 sm:grid-cols-1 gap-2 items-center">
           <h6 class="text-2xl font-bold">
             {t("contact.stayInTouchTitle")}
           </h6>
-          <p class="text-md">Alan Hidalgo</p>
-          <p class="text-md">alan.hidalgo@outlook.com</p>
-          <p class="text-md">+56 9 8765 4321</p>
-          <div class="flex items-center gap-3">
-            <ButtonIcon variant="white" href={sources.github}>
-              <Github />
-            </ButtonIcon>
-            <ButtonIcon variant="white" href={sources.linkedin}>
-              <Linkedin />
-            </ButtonIcon>
-            <ButtonIcon variant="white" href={sources.email}>
-              <Email />
-            </ButtonIcon>
+          <div class="grid grid-cols-1 gap-2">
+            <p class="text-md">{sources.name}</p>
+            <p class="text-md">{sources.email}</p>
+            <p class="text-md">{sources.phone}</p>
+            <div class="flex items-center gap-3">
+              <ButtonIcon variant="white" href={sources.github}>
+                <Github />
+              </ButtonIcon>
+              <ButtonIcon variant="white" href={sources.linkedin}>
+                <Linkedin />
+              </ButtonIcon>
+              <ButtonIcon variant="white" href={sources.email}>
+                <Email />
+              </ButtonIcon>
+            </div>
           </div>
         </div>
       </div>
       <div class="w-[1px] h-full bg-2"></div>
-      <div class="w-3/4 md:w-full flex flex-col gap-3 p-4 mx-auto">
-        <h6 class="text-2xl font-bold mb-2">
+      <div class="w-full sm:w-3/4 flex flex-col gap-3 p-4 mx-auto">
+        <h6 class="text-2xl font-bold mb-2 sm:text-left text-center">
           {t("contact.form.title")}
         </h6>
         <form action="" class="grid grid-cols-1 gap-5">
@@ -60,9 +67,11 @@ const { t } = useLang(Astro.url);
           <textarea
             class="w-full p-2 border-2 border-black rounded-lg"
             placeholder={t("contact.form.messagePlaceholder")}></textarea>
-          <Button type="submit" variant="black" size="sm" class="w-45"
-            >{t("contact.form.submit")}</Button
-          >
+          <div class="flex items-center justify-center sm:justify-start">
+            <Button type="submit" variant="black" size="sm" class=""
+              >{t("contact.form.submit")}</Button
+            >
+          </div>
         </form>
       </div>
     </div>

@@ -94,7 +94,7 @@ const en: Lang = {
     },
   },
   footer: {
-    copyright: "Powered by Alan Hidalgo © 2025",
+    copyright: "Powered by Alan Hidalgo  © 2026",
     ctaContact: "GET IN TOUCH",
   },
   skills: {

@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@canva/design": "^2.7.5",
     "@tabler/icons": "^3.35.0",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.0",
