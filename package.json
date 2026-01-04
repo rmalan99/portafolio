@@ -6,9 +6,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start": "NODE_ENV=production node ./dist/server/entry.mjs"
   },
   "dependencies": {
+    "@astrojs/node": "^9.5.1",
     "@canva/design": "^2.7.5",
     "@tabler/icons": "^3.35.0",
     "@tailwindcss/vite": "^4.1.17",
