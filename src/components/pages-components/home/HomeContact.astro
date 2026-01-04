@@ -160,9 +160,10 @@ const recaptchaEnabled = Boolean(recaptchaSiteKey);
 <script type="module">
   import { contactSchema } from "@utils/validation/contactSchema";
 
-  const form = document.querySelector("#contact-form");
+  const initContactForm = () => {
+    const form = document.querySelector("#contact-form");
+    if (!form) return;
 
-  if (form) {
     const nameInput = form.querySelector('[name="name"]');
     const emailInput = form.querySelector('[name="email"]');
     const messageInput = form.querySelector('[name="message"]');
@@ -301,10 +302,18 @@ const recaptchaEnabled = Boolean(recaptchaSiteKey);
         clearErrors();
       } catch (error) {
         setStatus(messages.error, "error");
-      } finally {
-        submitButton?.removeAttribute("disabled");
-        if (tokenInput) tokenInput.value = "";
-      }
+    } finally {
+      submitButton?.removeAttribute("disabled");
+      if (tokenInput) tokenInput.value = "";
+    }
     });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initContactForm, {
+      once: true,
+    });
+  } else {
+    initContactForm();
   }
 </script>
