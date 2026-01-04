@@ -7,8 +7,7 @@ import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
-  // Update this with your actual domain
-  // site: 'https://alanhidalgo.dev',
+  site: process.env.SITE_URL ?? "https://www.alan-hidalgo.online",
 
   vite: {
     plugins: [tailwindcss()]

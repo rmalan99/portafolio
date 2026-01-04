@@ -40,6 +40,7 @@ Create a `.env` file at the project root:
 ASTRO_PUBLIC_RECAPTCHA_SITE_KEY=
 RECAPTCHA_SECRET_KEY=
 RECAPTCHA_MIN_SCORE=0.5
+SITE_URL=https://www.alan-hidalgo.online
 ```
 
 ## Notes
