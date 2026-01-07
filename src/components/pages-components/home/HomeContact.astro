@@ -160,8 +160,6 @@ const recaptchaAction = "contact_submit";
 }
 
 <script type="module">
-  import { contactSchema } from "@utils/validation/contactSchema";
-
   const initContactForm = () => {
     const form = document.querySelector("#contact-form");
     if (!form) return;
@@ -224,30 +222,28 @@ const recaptchaAction = "contact_submit";
 
     const validateForm = () => {
       if (!nameInput || !emailInput || !messageInput) return false;
-      const result = contactSchema.safeParse({
-        name: nameInput.value,
-        email: emailInput.value,
-        message: messageInput.value,
-        botField: botInput?.value ?? "",
-      });
 
-      if (result.success) {
-        clearErrors();
+      const nameValue = nameInput.value.trim();
+      const emailValue = emailInput.value.trim();
+      const messageValue = messageInput.value.trim();
+      const botValue = botInput?.value ?? "";
+
+      const nameValid = nameValue.length >= 2 && nameValue.length <= 80;
+      const emailValid =
+        emailValue.length <= 120 &&
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
+      const messageValid =
+        messageValue.length >= 10 && messageValue.length <= 1000;
+      const botValid = botValue.length === 0;
+
+      setFieldError("name", nameValid ? "" : messages.name);
+      setFieldError("email", emailValid ? "" : messages.email);
+      setFieldError("message", messageValid ? "" : messages.message);
+
+      if (nameValid && emailValid && messageValid && botValid) {
         return true;
       }
 
-      const fieldsWithErrors = new Set(
-        result.error.issues.map((issue) => issue.path[0]),
-      );
-      setFieldError("name", fieldsWithErrors.has("name") ? messages.name : "");
-      setFieldError(
-        "email",
-        fieldsWithErrors.has("email") ? messages.email : "",
-      );
-      setFieldError(
-        "message",
-        fieldsWithErrors.has("message") ? messages.message : "",
-      );
       return false;
     };
 
