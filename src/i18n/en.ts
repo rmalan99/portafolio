@@ -91,6 +91,7 @@ const en: Lang = {
       emailPlaceholder: "Email",
       messagePlaceholder: "Message",
       submit: "Send",
+      close: "Close",
       errors: {
         name: "Please enter a valid name.",
         email: "Please enter a valid email.",

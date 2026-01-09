@@ -89,6 +89,7 @@ const es = {
       emailPlaceholder: "Email",
       messagePlaceholder: "Mensaje",
       submit: "Enviar",
+      close: "Cerrar",
       errors: {
         name: "Ingresa un nombre válido.",
         email: "Ingresa un email válido.",
