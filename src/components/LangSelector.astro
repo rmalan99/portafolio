@@ -1,8 +1,8 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
-import useLang from "../utils/useLang";
-import { LANG_OPTIONS } from "../i18n/const/lang";
-import ChevronDown from "../assets/chevromdown.svg";
+import useLang from "@utils/useLang";
+import { LANG_OPTIONS } from "@i18n/const/lang";
+import ChevronDown from "@assets/chevromdown.svg";
 
 const { lang } = useLang(Astro.url);
 const { label, flag, name } = LANG_OPTIONS[lang];
