@@ -2,16 +2,10 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-const repoName = process.env.GITHUB_REPOSITORY?.split('/')?.[1];
-const githubBase = repoName ? `/${repoName}` : undefined;
-const githubSite = process.env.GITHUB_REPOSITORY
-  ? `https://${process.env.GITHUB_REPOSITORY.split('/')?.[0]}.github.io${githubBase ?? ''}`
-  : undefined;
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL ?? githubSite ?? 'https://www.alan-hidalgo.online',
-  base: githubBase,
+  site: process.env.SITE_URL,
   output: 'static',
 
   vite: {
