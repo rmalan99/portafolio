@@ -2,10 +2,21 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
+const envSite = process.env.SITE_URL ?? '';
+
+const resolvedSite = (() => {
+  if (!envSite || !/^https?:\/\//.test(envSite)) return undefined;
+  try {
+    const url = new URL(envSite);
+    return url.toString().replace(/\/$/, '');
+  } catch {
+    return undefined;
+  }
+})();
 
 // https://astro.build/config
 export default defineConfig({
-  site:  process.env.NODE_ENV == 'localhost' ? `${process.env.SITE_URL}:${Number(process.env.PORT)}` : process.env.SITE_URL,
+  site: resolvedSite,
   output: 'static',
 
   vite: {
