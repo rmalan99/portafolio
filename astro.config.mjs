@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 const envSite = process.env.SITE_URL ?? '';
+const envBase = process.env.BASE_PATH ?? '/portafolio';
 
 const resolvedSite = (() => {
   if (!envSite || !/^https?:\/\//.test(envSite)) return undefined;
@@ -17,6 +18,7 @@ const resolvedSite = (() => {
 // https://astro.build/config
 export default defineConfig({
   site: resolvedSite,
+  base: envBase,
   output: 'static',
 
   vite: {
