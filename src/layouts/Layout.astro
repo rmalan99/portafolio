@@ -22,8 +22,13 @@ const title = "Alan Hidalgo - Frontend Developer | Portfolio";
 const description = lang === "es" 
   ? "Portafolio de Alan Hidalgo, desarrollador Frontend especializado en crear experiencias web modernas y eficientes."
   : "Portfolio of Alan Hidalgo, Frontend Developer specialized in creating modern and efficient web experiences.";
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL("/og-image.jpg", Astro.site);
+const envSite = import.meta.env.SITE_URL;
+const siteBase =
+  envSite && envSite.startsWith("http")
+    ? envSite
+    : Astro.site ?? `${Astro.url.protocol}//${Astro.url.host}`;
+const canonicalURL = new URL(Astro.url.pathname, siteBase);
+const ogImage = new URL("/og-image.jpg", siteBase);
 ---
 
 <!doctype html>
