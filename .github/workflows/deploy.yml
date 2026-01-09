@@ -38,7 +38,7 @@ jobs:
         env:
           SITE_URL: https://alan-hidalgo.online
           BASE_PATH: /
-          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY || vars.PUBLIC_WEB3FORMS_KEY }}
+          PUBLIC_WEB3FORMS_KEY: ${{  github.vars.PUBLIC_WEB3FORMS_KEY || vars.PUBLIC_WEB3FORMS_KEY }}
           NODE_ENV: production
 
       - name: Upload artifact
