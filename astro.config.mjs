@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
-const envSite = process.env.SITE_URL ?? '';
+const envSite = process.env.SITE_URL ?? 'https://alan-hidalgo.online';
 
 const resolvedSite = (() => {
   if (!envSite || !/^https?:\/\//.test(envSite)) return undefined;
