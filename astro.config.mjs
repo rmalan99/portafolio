@@ -1,33 +1,29 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
 
-import node from "@astrojs/node";
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')?.[1];
+const githubBase = repoName ? `/${repoName}` : undefined;
+const githubSite = process.env.GITHUB_REPOSITORY
+  ? `https://${process.env.GITHUB_REPOSITORY.split('/')?.[0]}.github.io${githubBase ?? ''}`
+  : undefined;
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL ?? "https://www.alan-hidalgo.online",
+  site: process.env.SITE_URL ?? githubSite ?? 'https://www.alan-hidalgo.online',
+  base: githubBase,
+  output: 'static',
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
 
   i18n: {
-    locales: ["es", "en"],
-    defaultLocale: "es",
+    locales: ['es', 'en'],
+    defaultLocale: 'es',
     routing: {
       prefixDefaultLocale: false,
       redirectToDefaultLocale: true,
-    }
-
+    },
   },
-  output: 'server',
-  adapter: node({
-    mode: 'standalone'
-  }),
-  server: {
-    port: process.env.NODE_ENV === 'production' ? (Number(process.env.PORT) || 80) : 4321,
-    host: true
-  }
 });
