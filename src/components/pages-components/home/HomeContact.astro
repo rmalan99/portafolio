@@ -7,6 +7,10 @@ import Linkedin from "@assets/icons/linkedin.svg";
 import Email from "@assets/icons/email.svg";
 import Button from "@components/buttons/Button.astro";
 const { t } = useLang(Astro.url);
+const mailtoSubject = t("contact.mailSubject");
+const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
+  mailtoSubject
+)}`;
 ---
 
 <section id="contact" class="w-full h-vh p-0 sm:p-10">
@@ -32,7 +36,12 @@ const { t } = useLang(Astro.url);
           </h6>
           <div class="grid grid-cols-1 gap-2">
             <p class="text-md font-semibold">{sources.name}</p>
-            <p class="text-md font-semibold">{sources.email}</p>
+            <a
+              class="text-md font-semibold cursor-pointer no-underline hover:underline hover:text-gray-600 underline-offset-2"
+              href={mailtoHref}
+            >
+              {sources.email}
+            </a>
             <p class="text-md font-semibold">{sources.phone}</p>
             <div class="flex items-center gap-3">
               <ButtonIcon variant="white" href={sources.github}>
@@ -41,7 +50,7 @@ const { t } = useLang(Astro.url);
               <ButtonIcon variant="white" href={sources.linkedin}>
                 <Linkedin />
               </ButtonIcon>
-              <ButtonIcon variant="white" href={sources.email}>
+              <ButtonIcon variant="white" href={mailtoHref}>
                 <Email />
               </ButtonIcon>
             </div>

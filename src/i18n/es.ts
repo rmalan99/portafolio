@@ -83,6 +83,7 @@ const es = {
       "Construyamos juntos solución moderna, eficiente y escalable para impulsar tu negocio.",
     stayInTouchTitle: "Estemos en contacto",
     contactCta: "Hablemos",
+    mailSubject: "Contacto desde portafolio",
     form: {
       title: "Envíame un mensaje",
       namePlaceholder: "Nombre",

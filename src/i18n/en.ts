@@ -85,6 +85,7 @@ const en: Lang = {
       "Let's build a modern, efficient, and scalable solution to grow your business.",
     stayInTouchTitle: "Stay in touch",
     contactCta: "Get in touch",
+    mailSubject: "Contact from portfolio",
     form: {
       title: "Send me a message",
       namePlaceholder: "Name",
