@@ -7,7 +7,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "start": "astro preview"
+    "start": "astro preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@canva/design": "^2.7.5",
@@ -16,5 +20,13 @@
     "astro": "^5.16.0",
     "tailwindcss": "^4.1.17",
     "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@vitest/coverage-v8": "^4.0.17",
+    "husky": "^9.1.7",
+    "jsdom": "^27.0.1",
+    "vite-tsconfig-paths": "^6.0.4",
+    "vitest": "^4.0.17"
   }
 }
