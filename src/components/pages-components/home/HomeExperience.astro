@@ -1,0 +1,306 @@
+---
+import Button from "@components/buttons/Button.astro";
+import historyWorks from "@consts/history-works";
+import useLang from "@utils/useLang";
+
+const { t } = useLang(Astro.url);
+const visibleItems = 3;
+---
+
+<section id="experience" class="w-full bg-2 py-12 sm:py-16">
+  <div
+    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 grid grid-cols-1 gap-8"
+  >
+    <div class="flex flex-col gap-3 justify-center items-center text-center">
+      <h4 class="text-3xl font-bold">{t("experience.sectionTitle")}</h4>
+      <p class="text-2 sm:w-4/4 md:w-3/4 lg:w-2/4">
+        {t("experience.sectionDescription")}
+      </p>
+    </div>
+
+    <div
+      class="experience-list relative flex flex-col gap-6 sm:gap-8"
+      data-experience-list
+      data-visible-count={visibleItems}
+      data-expanded="false"
+    >
+      {
+        historyWorks.map((item, index) => {
+          const company = t(item.companyKey);
+          const highlights = item.highlightsKeys?.map((key) => t(key)) || [];
+          const avatar = company.trim().charAt(0) || "•";
+
+          return (
+            <article
+              class="experience-item rounded-sm p-6 w-full"
+              data-experience-item
+              data-index={index}
+            >
+              <div class="flex flex-col gap-4">
+                <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                  <div class="flex items-start gap-3">
+                    <div class="experience-avatar" aria-hidden="true">
+                      {avatar}
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <h5 class="text-xl font-bold leading-tight">
+                        {t(item.titleKey)}
+                      </h5>
+                      <span class="text-3 text-sm uppercase tracking-wide">
+                        {company}
+                      </span>
+                    </div>
+                  </div>
+                  <span class="date-pill">{t(item.dateRangeKey)}</span>
+                </div>
+
+                <p class="text-sm text-2 leading-relaxed">
+                  {t(item.descriptionKey)}
+                </p>
+
+                {highlights.length > 0 && (
+                  <ul class="experience-highlights text-sm text-2 leading-relaxed">
+                    {highlights.map((highlight) => (
+                      <li>{highlight}</li>
+                    ))}
+                  </ul>
+                )}
+
+                <div class="flex flex-wrap gap-2">
+                  {item.technologies.map((tech) => (
+                    <span class="tech-pill">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    {
+      historyWorks.length > visibleItems && (
+        <div
+          class="flex justify-center"
+          data-experience-toggle
+          data-show-more-text={t("experience.actions.showMore")}
+          data-show-less-text={t("experience.actions.showLess")}
+        >
+          <Button variant="black" size="sm" class="min-w-40">
+            {t("experience.actions.showMore")}
+          </Button>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style is:inline>
+  .experience-item {
+    position: relative;
+    padding-left: 0;
+    transition:
+      opacity 320ms var(--ease-smooth),
+      transform 320ms var(--ease-smooth),
+      max-height 360ms var(--ease-smooth),
+      margin 320ms var(--ease-smooth),
+      padding 320ms var(--ease-smooth);
+    max-height: 900px;
+    border: 1px solid rgba(10, 9, 9, 0.04);
+    border-radius: 0.75rem;
+    transition:
+      border-color 220ms var(--ease-smooth),
+      transform 220ms var(--ease-smooth);
+    &:hover {
+      border-color: rgba(20, 18, 18, 0.6);
+      transform: translateY(-4px);
+    }
+  }
+
+  .experience-item {
+    transition-delay: var(--item-delay, 0ms);
+  }
+
+  .experience-item--hidden {
+    opacity: 0;
+    transform: translateY(14px);
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .experience-marker {
+    position: absolute;
+    left: 1.25rem;
+    top: 2rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: #111;
+    border-radius: 9999px;
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.04);
+    display: none;
+  }
+
+  .experience-avatar {
+    width: 2.85rem;
+    height: 2.85rem;
+    border-radius: 9999px;
+    background: #111;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+
+  .date-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    background: #fff;
+    color: #111;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  }
+
+  .tech-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.32rem 0.7rem;
+    border-radius: 9999px;
+    background: rgba(0, 0, 0, 0.06);
+    color: #111;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .experience-highlights {
+    display: grid;
+    gap: 0.4rem;
+    padding-left: 1.1rem;
+    list-style-type: disc;
+  }
+
+  @media (max-width: 639px) {
+    .experience-list {
+      gap: 1.75rem;
+    }
+
+    .experience-item {
+      padding: 1.25rem;
+      border-radius: 0.9rem;
+    }
+
+    .experience-marker,
+    .experience-list::before {
+      display: none;
+    }
+
+    .experience-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .date-pill {
+      align-self: flex-start;
+      font-size: 0.7rem;
+      padding: 0.3rem 0.65rem;
+      margin-top: 0.25rem;
+    }
+
+    .tech-pill {
+      font-size: 0.68rem;
+      padding: 0.28rem 0.62rem;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .experience-list::before {
+      display: block;
+    }
+
+    .experience-marker {
+      display: block;
+    }
+
+    .experience-item {
+      padding-left: 3.25rem;
+    }
+
+    .experience-list[data-expanded="true"]
+      .experience-item:not(.experience-item--hidden) {
+      --item-delay: 80ms;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .experience-item {
+      padding: 1.75rem;
+      padding-left: 3.5rem;
+    }
+
+    .tech-pill {
+      font-size: 0.74rem;
+      padding: 0.32rem 0.72rem;
+    }
+
+    .date-pill {
+      font-size: 0.72rem;
+      padding: 0.32rem 0.72rem;
+    }
+  }
+</style>
+
+<script>
+  const list = document.querySelector<HTMLElement>("[data-experience-list]");
+  const toggleWrapper = document.querySelector<HTMLElement>(
+    "[data-experience-toggle]",
+  );
+  const button = toggleWrapper?.querySelector<HTMLButtonElement>("button");
+  const visibleCount = Number(list?.dataset.visibleCount || "4");
+  const items = list
+    ? Array.from(list.querySelectorAll<HTMLElement>("[data-experience-item]"))
+    : [];
+
+  if (list && toggleWrapper && button && items.length > visibleCount) {
+    const showMoreText =
+      toggleWrapper.dataset.showMoreText || button.textContent || "Show more";
+    const showLessText = toggleWrapper.dataset.showLessText || "Show less";
+    let expanded = false;
+
+    const applyState = () => {
+      items.forEach((item, index) => {
+        const hide = !expanded && index >= visibleCount;
+        item.classList.toggle("experience-item--hidden", hide);
+        item.style.setProperty(
+          "--item-delay",
+          `${Math.min(index, visibleCount) * 50}ms`,
+        );
+      });
+
+      button.textContent = expanded
+        ? showLessText || showMoreText
+        : showMoreText;
+      list.dataset.expanded = String(expanded);
+    };
+
+    applyState();
+
+    toggleWrapper.addEventListener("click", () => {
+      expanded = !expanded;
+      applyState();
+    });
+  }
+</script>

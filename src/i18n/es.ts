@@ -130,6 +130,103 @@ const es = {
       },
     },
   },
+  experience: {
+    sectionTitle: "Trayectoria profesional",
+    sectionDescription:
+      "Una selección de roles recientes con impacto en productos y equipos.",
+    actions: {
+      showMore: "Ver más",
+      showLess: "Ver menos",
+    },
+    items: {
+      remaxRd: {
+        title: "Frontend & Mobile Developer",
+        company: "Remax RD — Real Estate Platform",
+        dateRange: "may 2023 - ene 2026",
+        description:
+          "Plataforma inmobiliaria para gestión de propiedades y operaciones internas en web, móvil y BackOffice. Contractor vía VersionDo.",
+        highlights: {
+          seo: "Migré el sitio principal a tecnologías modernas, mejorando SEO, rendimiento y escalabilidad.",
+          mobile:
+            "Desarrollé la app móvil con Ionic y Capacitor asegurando comportamiento consistente entre dispositivos.",
+          backoffice:
+            "Migré y desarrollé múltiples BackOffice, mejorando flujos internos y mantenibilidad.",
+          ui: "Construí componentes UI reutilizables y reforcé la arquitectura frontend en web y móvil.",
+          efficiency:
+            "Reducí tiempos de build hasta 80 % y generación de reportes en 85 %, acelerando ciclos de entrega.",
+        },
+      },
+      banMovil: {
+        title: "Frontend Developer",
+        company: "BanMovil — Aplicación de Lotería Virtual",
+        dateRange: "mar 2025 - ene 2026",
+        description:
+          "App móvil multiplataforma de lotería virtual con enfoque en onboarding seguro, gestión de cuentas y juego en tiempo real. Contractor vía VersionDo.",
+        highlights: {
+          ux: "Diseñé interfaces y flujos en Figma alineando UX con producto y negocio.",
+          pwa: "Desarrollé la app en Vue.js 2 con arquitectura PWA para experiencia consistente multiplataforma.",
+          kyc: "Implementé flujos críticos de KYC, servicios de cuenta y recarga/auto-recarga de balance.",
+          gameplay:
+            "Construí componentes dinámicos para juego de lotería y visualización de resultados en tiempo real.",
+          api: "Integré y consumí APIs REST colaborando con backend y QA para estabilidad en producción.",
+        },
+      },
+      questTravel: {
+        title: "Mobile Developer",
+        company: "QuestTravel — BerryWhale",
+        dateRange: "jun 2022 - ene 2023",
+        description:
+          "App móvil multiplataforma para suscripciones de viaje con beneficios premium: reembolsos, pases VIP, lounges y seguros integrados. Contractor vía VersionDo.",
+        highlights: {
+          subscription:
+            "Desarrollé la app enfocada en servicios de viaje basados en suscripción.",
+          flows:
+            "Implementé flujos de gestión de suscripciones, reembolsos y acceso a beneficios.",
+          vip: "Diseñé interfaces para pases VIP y acceso a lounges/zonas de espera exclusivas.",
+          insurance:
+            "Integré funcionalidades de seguros de viaje, mejorando claridad y usabilidad.",
+          api: "Integré y consumí APIs REST asegurando manejo seguro de datos y UX fluida en móvil.",
+        },
+      },
+      deParEnPar: {
+        title: "Frontend Developer",
+        company: "De Par en Par — BerryWhale / IEET",
+        dateRange: "jun 2021 - may 2023",
+        description:
+          "Plataforma hermana para gestión de pasantías técnicas de estudiantes universitarios, coordinando prácticas, seguimiento y flujos institucionales. Contractor vía VersionDo.",
+        highlights: {
+          modules:
+            "Desarrollé y mantuve múltiples módulos frontend en la evolución continua de la plataforma.",
+          bugs: "Corregí bugs y mejoré features existentes para estabilidad y experiencia de usuario.",
+          features:
+            "Integré nuevas funcionalidades alineadas con requerimientos académicos e institucionales.",
+          scrum:
+            "Colaboré en ciclos de desarrollo basados en Scrum, asegurando entregas iterativas.",
+          usability:
+            "Mejoré consistencia visual y usabilidad en distintas secciones de la aplicación.",
+        },
+      },
+      deParEnParSecondary: {
+        title: "Frontend Developer",
+        company: "De Par en Par — BerryWhale / IEET",
+        dateRange: "ago 2020 - may 2022",
+        description:
+          "Plataforma web para gestión de pasantías técnicas de estudiantes de secundaria, coordinando prácticas y procesos institucionales. Contractor vía VersionDo.",
+        highlights: {
+          modules:
+            "Desarrollé y mantuve múltiples módulos frontend en la evolución continua de la plataforma.",
+          bugs:
+            "Corregí bugs y mejoré funcionalidades existentes para estabilidad y mejor experiencia.",
+          features:
+            "Integré nuevas funcionalidades alineadas con requerimientos académicos e institucionales.",
+          scrum:
+            "Colaboré en ciclos de desarrollo basados en Scrum, asegurando entregas iterativas.",
+          usability:
+            "Mejoré consistencia visual y usabilidad en distintas secciones de la aplicación.",
+        },
+      },
+    },
+  },
   languageSelector: {
     label: "Idioma",
     options: {

@@ -132,6 +132,103 @@ const en: Lang = {
       },
     },
   },
+  experience: {
+    sectionTitle: "Career journey",
+    sectionDescription: "A curated set of recent roles impacting products and teams.",
+    actions: {
+      showMore: "Show more",
+      showLess: "Show less",
+    },
+    items: {
+      remaxRd: {
+        title: "Frontend & Mobile Developer",
+        company: "Remax RD — Real Estate Platform",
+        dateRange: "May 2023 - Jan 2026",
+        description:
+          "Real estate platform for property management, listings, and internal ops across web, mobile, and BackOffice. Contract via VersionDo.",
+        highlights: {
+          seo: "Migrated the main site to modern tech, improving SEO, performance, and scalability.",
+          mobile:
+            "Built the mobile app with Ionic and Capacitor, ensuring consistent behavior across devices.",
+          backoffice:
+            "Migrated and developed multiple BackOffice systems, improving workflows and maintainability.",
+          ui: "Built reusable UI components and strengthened frontend architecture across web and mobile.",
+          efficiency:
+            "Cut build times by up to 80% and report generation time by 85%, accelerating delivery cycles.",
+        },
+      },
+      banMovil: {
+        title: "Frontend Developer",
+        company: "BanMovil — Virtual Lottery Gaming Application",
+        dateRange: "Mar 2025 - Jan 2026",
+        description:
+          "Cross-platform virtual lottery app focused on secure onboarding, account management, and real-time gameplay. Contract via VersionDo.",
+        highlights: {
+          ux: "Designed UIs and flows in Figma, aligning UX with product and business requirements.",
+          pwa: "Developed the app with Vue.js 2 using a PWA architecture for consistent cross-platform experience.",
+          kyc: "Implemented critical flows like KYC, account services, and balance request/auto-recharge.",
+          gameplay:
+            "Built dynamic components for lottery gameplay and real-time result visualization.",
+          api: "Integrated and consumed REST APIs, collaborating with backend and QA to ensure production stability.",
+        },
+      },
+      questTravel: {
+        title: "Mobile Developer",
+        company: "QuestTravel — BerryWhale",
+        dateRange: "Jun 2022 - Jan 2023",
+        description:
+          "Cross-platform travel subscription app delivering premium perks: refunds, VIP passes, lounge access, and integrated travel insurance. Contractor via VersionDo.",
+        highlights: {
+          subscription:
+            "Developed the app focused on subscription-based travel services.",
+          flows:
+            "Implemented subscription management flows including refunds and benefit access.",
+          vip: "Built interfaces for VIP passes and exclusive lounge/waiting area access.",
+          insurance:
+            "Integrated travel insurance features, improving clarity and usability for users.",
+          api: "Integrated and consumed REST APIs, ensuring secure data handling and smooth mobile interactions.",
+        },
+      },
+      deParEnPar: {
+        title: "Frontend Developer",
+        company: "De Par en Par — BerryWhale / IEET",
+        dateRange: "Jun 2021 - May 2023",
+        description:
+          "Sister web platform managing technical internships for higher-education students, supporting coordination, tracking, and institutional workflows. Contractor via VersionDo.",
+        highlights: {
+          modules:
+            "Developed and maintained multiple frontend modules as the platform evolved.",
+          bugs:
+            "Fixed bugs and improved existing features to enhance stability and user experience.",
+          features:
+            "Integrated new functionality aligned with evolving academic and institutional requirements.",
+          scrum:
+            "Collaborated within Scrum cycles to keep delivery smooth and iterative.",
+          usability:
+            "Improved UI consistency and usability across the application’s sections.",
+        },
+      },
+      deParEnParSecondary: {
+        title: "Frontend Developer",
+        company: "De Par en Par — BerryWhale / IEET",
+        dateRange: "Aug 2020 - May 2022",
+        description:
+          "Web platform managing technical internships for secondary students, coordinating placements, tracking, and institutional processes. Contractor via VersionDo.",
+        highlights: {
+          modules:
+            "Developed and maintained multiple frontend modules as the platform evolved.",
+          bugs:
+            "Fixed bugs and improved existing features to enhance stability and user experience.",
+          features:
+            "Integrated new functionality aligned with academic and institutional requirements.",
+          scrum:
+            "Collaborated within Scrum-based iterations to keep delivery smooth.",
+          usability:
+            "Improved UI consistency and usability across different sections of the application.",
+        },
+      },
+    },
+  },
   languageSelector: {
     label: "Language",
     options: {

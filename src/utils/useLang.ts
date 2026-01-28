@@ -8,11 +8,12 @@ const ui = {
 
 export const AVAILABLE_LOCALES = Object.keys(ui);
 export type AvailableLocales = keyof typeof ui;
+const DEFAULT_LOCALE: AvailableLocales = "en";
 
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split("/");
   if (lang in ui) return lang as AvailableLocales;
-  return "es";
+  return DEFAULT_LOCALE;
 }
 
 const getTranslation = (lang: AvailableLocales) => {
