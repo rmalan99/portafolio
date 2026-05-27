@@ -13,10 +13,8 @@ const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
 )}`;
 ---
 
-<section id="contact" class="w-full h-vh p-0 sm:p-10">
-  <div
-    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-10"
-  >
+<section id="contact" class="w-full bg-2 py-20 sm:py-24 lg:py-28">
+  <div class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 grid grid-cols-1 gap-10">
     <div class="flex flex-col gap-3">
       <h4 class="text-3xl font-bold text-center">
         {t("contact.sectionTitle")}
@@ -58,7 +56,7 @@ const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
         </div>
       </div>
       <div class="w-[1px] h-full bg-2"></div>
-      <div class="w-full sm:w-3/4 flex flex-col gap-3 p-4 mx-auto">
+      <div class="w-full sm:w-3/4 flex flex-col gap-3 mx-auto">
         <h6 class="text-2xl font-bold mb-2 sm:text-left text-center">
           {t("contact.form.title")}
         </h6>

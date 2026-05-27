@@ -8,17 +8,15 @@ const cvPath = cv[lang].path;
 const cvName = cv[lang].name;
 ---
 
-<section id="about" class="w-full h-vh bg-2 py-10">
-  <div
-    class="sm:max-w-7xl mx-auto px-6 py-10 sm:px-10 xl:px-0 grid grid-cols-1 gap-10"
-  >
+<section id="about" class="w-full bg-2 py-20 sm:py-24 lg:py-28">
+  <div class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 grid grid-cols-1 gap-10">
     <div class="flex flex-col gap-3">
       <h4 class="text-3xl font-bold text-center">{t("about.sectionTitle")}</h4>
       <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
         {t("about.summary")}
       </p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
       {
         softSkills.map((skill) => (
           <div class="flex flex-col gap-3 bg-3 p-6 rounded-sm">
