@@ -26,13 +26,13 @@ const {
 } = Astro.props;
 
 const baseClasses =
-  "group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full border border-transparent font-primary text-center font-bold uppercase leading-none tracking-[0.12em] whitespace-nowrap select-none transition-all duration-300 [transition-timing-function:var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-1)] disabled:pointer-events-none disabled:opacity-50";
+  "group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full border border-transparent font-primary text-center font-bold uppercase leading-none tracking-[0.12em] whitespace-nowrap select-none transition-all duration-300 [transition-timing-function:var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--surface-page)] disabled:pointer-events-none disabled:opacity-50";
 
 const variantClasses = {
   white:
-    "bg-white text-black shadow-[0_10px_30px_rgba(17,17,17,0.08)] hover:-translate-y-0.5 hover:bg-[#f7f3ec] hover:shadow-[0_16px_36px_rgba(17,17,17,0.14)] focus-visible:ring-black/20",
+    "bg-[var(--surface-card)] text-[var(--text-primary)] shadow-[var(--shadow-soft)] hover:-translate-y-0.5 hover:bg-[var(--surface-card-hover)] hover:shadow-[var(--shadow-soft-hover)] focus-visible:ring-[var(--border-accent)]",
   black:
-    "bg-[var(--button-bg)] text-[var(--button-text)] shadow-[0_10px_30px_rgba(17,17,17,0.16)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_18px_38px_rgba(17,17,17,0.22)] focus-visible:ring-black/25",
+    "bg-[var(--button-bg)] text-[var(--button-text)] shadow-[var(--shadow-button)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[var(--shadow-button-hover)] focus-visible:ring-[var(--border-accent)]",
 };
 
 const sizeClasses = {
@@ -76,7 +76,7 @@ const linkHref = disabled ? undefined : href;
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.16) 50%, transparent 80%);
+    background: var(--button-shine);
     transform: translateX(-135%);
     transition: transform 0.7s var(--ease-smooth);
     pointer-events: none;

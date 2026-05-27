@@ -13,9 +13,9 @@ const { filters, activeValue = "all" } = Astro.props;
 
 const filterPill =
   "inline-flex min-h-[2.6rem] items-center justify-center rounded-full border px-5 text-[0.78rem] font-medium tracking-[-0.01em] transition-all duration-[350ms] [transition-timing-function:var(--ease-smooth)]";
-const activeClasses = "border-[#1c1812] bg-[#1c1812] text-white shadow-[0_4px_20px_rgba(28,24,18,0.14)]";
+const activeClasses = "border-[var(--button-bg)] bg-[var(--button-bg)] text-[var(--button-text)] shadow-[var(--shadow-soft)]";
 const inactiveClasses =
-  "border-[#c9b896]/40 bg-transparent text-[#6b5e4c] hover:border-[#c9b896]/80 hover:bg-[#ede4d4]/50 hover:text-[#3d3220]";
+  "border-[color-mix(in_srgb,var(--border-strong)_40%,transparent)] bg-transparent text-[var(--text-muted)] hover:border-[var(--border-strong)] hover:bg-[var(--surface-subtle)] hover:text-[var(--text-secondary)]";
 ---
 
 <div class="flex flex-wrap gap-3" data-project-filters>
@@ -53,35 +53,35 @@ const inactiveClasses =
 
       const ACTIVE_CLASSES = {
         add: [
-          "border-[#1c1812]",
-          "bg-[#1c1812]",
-          "text-white",
-          "shadow-[0_4px_20px_rgba(28,24,18,0.14)]",
+          "border-[var(--button-bg)]",
+          "bg-[var(--button-bg)]",
+          "text-[var(--button-text)]",
+          "shadow-[var(--shadow-soft)]",
         ],
         remove: [
-          "border-[#c9b896]/40",
+          "border-[color-mix(in_srgb,var(--border-strong)_40%,transparent)]",
           "bg-transparent",
-          "text-[#6b5e4c]",
-          "hover:border-[#c9b896]/80",
-          "hover:bg-[#ede4d4]/50",
-          "hover:text-[#3d3220]",
+          "text-[var(--text-muted)]",
+          "hover:border-[var(--border-strong)]",
+          "hover:bg-[var(--surface-subtle)]",
+          "hover:text-[var(--text-secondary)]",
         ],
       };
 
       const INACTIVE_CLASSES = {
         add: [
-          "border-[#c9b896]/40",
+          "border-[color-mix(in_srgb,var(--border-strong)_40%,transparent)]",
           "bg-transparent",
-          "text-[#6b5e4c]",
-          "hover:border-[#c9b896]/80",
-          "hover:bg-[#ede4d4]/50",
-          "hover:text-[#3d3220]",
+          "text-[var(--text-muted)]",
+          "hover:border-[var(--border-strong)]",
+          "hover:bg-[var(--surface-subtle)]",
+          "hover:text-[var(--text-secondary)]",
         ],
         remove: [
-          "border-[#1c1812]",
-          "bg-[#1c1812]",
-          "text-white",
-          "shadow-[0_4px_20px_rgba(28,24,18,0.14)]",
+          "border-[var(--button-bg)]",
+          "bg-[var(--button-bg)]",
+          "text-[var(--button-text)]",
+          "shadow-[var(--shadow-soft)]",
         ],
       };
 

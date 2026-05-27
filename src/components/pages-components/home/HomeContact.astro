@@ -37,7 +37,7 @@ const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
           <div class="grid grid-cols-1 gap-2">
             <p class="text-md font-semibold">{sources.name}</p>
             <a
-              class="text-md font-semibold cursor-pointer no-underline hover:underline hover:text-gray-600 underline-offset-2"
+              class="text-md font-semibold cursor-pointer no-underline underline-offset-2 hover:underline hover:text-[var(--text-secondary)]"
               href={mailtoHref}
             >
               {sources.email}
@@ -85,7 +85,7 @@ const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
           <div class="grid gap-1">
             <input
               id="contact-name"
-              class="w-full p-2 border-2 border-black rounded-lg"
+              class="w-full rounded-lg border-2 border-[var(--border-accent)] p-2 text-[var(--text-primary)] placeholder:text-[var(--text-muted)]"
               type="text"
               name="name"
               autocomplete="name"
@@ -103,7 +103,7 @@ const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
           <div class="grid gap-1">
             <input
               id="contact-email"
-              class="w-full p-2 border-2 border-black rounded-lg"
+              class="w-full rounded-lg border-2 border-[var(--border-accent)] p-2 text-[var(--text-primary)] placeholder:text-[var(--text-muted)]"
               type="email"
               name="email"
               autocomplete="email"
@@ -121,7 +121,7 @@ const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
           <div class="grid gap-1">
             <textarea
               id="contact-message"
-              class="w-full p-2 border-2 border-black rounded-lg"
+              class="w-full rounded-lg border-2 border-[var(--border-accent)] p-2 text-[var(--text-primary)] placeholder:text-[var(--text-muted)]"
               name="message"
               rows="5"
               required
@@ -142,7 +142,7 @@ const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
               class="contact-status-dialog"
             >
               <div
-                class="text-sm px-4 py-3  bg-white rounded-lg shadow-md  "
+                class="text-sm rounded-lg bg-[var(--surface-card)] px-4 py-3 shadow-[var(--shadow-soft)]"
               >
                 <p data-status-message class="text-sm"></p>
                 <div class="mt-3 flex justify-end">
@@ -194,7 +194,7 @@ const mailtoHref = `mailto:${sources.email}?subject=${encodeURIComponent(
   :global(.contact-status-dialog::backdrop) {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: var(--surface-overlay);
   }
 
   :global(body.dialog-open) {

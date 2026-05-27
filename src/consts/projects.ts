@@ -112,7 +112,7 @@ export const PROJECTS: ProjectCard[] = [
       src: "/videos/le-mise-real-showcase.es.mp4",
       title: "Le Mise showcase",
       poster: "https://raw.githubusercontent.com/rmalan99/le-mise-mobile-demo/main/public/app-icon.png",
-      posterBackground: "linear-gradient(180deg, #f7efe4 0%, #efe2cf 100%)",
+      posterBackground: "var(--surface-poster-default)",
       posterSize: "260px",
     },
     size: "small",
@@ -121,13 +121,13 @@ export const PROJECTS: ProjectCard[] = [
 ];
 
 export const projectTypeStyles = {
-  web: "border-[#d6c2a4] bg-[#fff8ef] text-[#9b672b]",
-  mobile: "border-[#b7caf3] bg-[#f6f9ff] text-[#3568d4]",
-  api: "border-[#c7d8c1] bg-[#f2faf0] text-[#3d7a49]",
+  web: "border-[var(--project-type-web-border)] bg-[var(--project-type-web-bg)] text-[var(--project-type-web-text)]",
+  mobile: "border-[var(--project-type-mobile-border)] bg-[var(--project-type-mobile-bg)] text-[var(--project-type-mobile-text)]",
+  api: "border-[var(--project-type-api-border)] bg-[var(--project-type-api-bg)] text-[var(--project-type-api-text)]",
 } as const;
 
 export const projectCategoryStyles = {
-  "test-case": "border-[#ead3c0] bg-[#fffaf6] text-[#8f5a2f]",
-  "product/client": "border-[#c8d5f3] bg-[#f6f8ff] text-[#4a62c8]",
-  "product/myself": "border-[#d9c7eb] bg-[#fbf8ff] text-[#7c58a8]",
+  "test-case": "border-[var(--project-category-test-case-border)] bg-[var(--project-category-test-case-bg)] text-[var(--project-category-test-case-text)]",
+  "product/client": "border-[var(--project-category-client-border)] bg-[var(--project-category-client-bg)] text-[var(--project-category-client-text)]",
+  "product/myself": "border-[var(--project-category-myself-border)] bg-[var(--project-category-myself-bg)] text-[var(--project-category-myself-text)]",
 } as const;

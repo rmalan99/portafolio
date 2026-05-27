@@ -6,7 +6,9 @@ export interface Props {
 
 const { variant, href, ...rest } = Astro.props;
 const classVariant =
-  variant === "white" ? "bg-white text-black" : "bg-black text-white";
+  variant === "white"
+    ? "bg-[var(--surface-card)] text-[var(--text-primary)]"
+    : "bg-[var(--button-bg)] text-[var(--button-text)]";
 ---
 
 <a
@@ -26,7 +28,7 @@ const classVariant =
     transition: transform 0.2s ease-in-out;
   }
 
-  /* Efecto de presión */
+  /* Press effect */
   a:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;

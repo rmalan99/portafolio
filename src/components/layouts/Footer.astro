@@ -10,12 +10,12 @@ const { t } = useLang(Astro.url);
 const [name, lastName] =  t("header.name").split(' ')
 ---
 
-<div class="w-full h-24 bg-black flex items-center">
+<div class="w-full h-24 bg-[var(--surface-footer)] flex items-center">
   <div
     class="max-w-7xl w-full mx-auto px-6 md:px-12 lg:px-16 xl:px-0 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0"
   >
     <div class="flex gap-5 items-center">
-      <div class="font-bold text-lg uppercase text-white">
+      <div class="font-bold text-lg uppercase text-[var(--surface-footer-text)]">
         {name} <span class="text-3">{lastName}</span>
       </div>
       <div class="flex items-center gap-3">
@@ -29,7 +29,7 @@ const [name, lastName] =  t("header.name").split(' ')
     </div>
 
     <div class="flex items-center gap-3">
-      <span class="text-white text-sm font-light font-secondary">
+      <span class="text-[var(--surface-footer-text)] text-sm font-light font-secondary">
         {t("footer.copyright")}
       </span>
     </div>

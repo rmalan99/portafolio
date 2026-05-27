@@ -37,7 +37,7 @@ const { t, lang } = useLang(Astro.url);
     transition: color 0.3s ease;
   }
 
-  /* Línea horizontal inferior */
+  /* Bottom horizontal line */
   .nav-link::after {
     content: "";
     position: absolute;
@@ -51,7 +51,7 @@ const { t, lang } = useLang(Astro.url);
       left 0.3s ease;
   }
 
-  /* Línea vertical derecha */
+  /* Right vertical line */
   .nav-link::before {
     content: "";
     position: absolute;
@@ -77,6 +77,6 @@ const { t, lang } = useLang(Astro.url);
   }
 
   .nav-link:hover {
-    color: #000;
+    color: var(--text-primary);
   }
 </style>

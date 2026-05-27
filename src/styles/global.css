@@ -32,6 +32,7 @@
 	--color-bg-3-dark: #3a3a3a;
 	--color-text-1-dark: #F4EEE2;
 	--color-text-2-dark: #E7E1D5;
+	--color-text-3-dark: #F0D67A;
 	--color-button-text-dark: #111111;
 	--color-button-bg-dark: #F4EEE2;
 
@@ -46,6 +47,63 @@
    ============================================ */
 
 :root {
+	--surface-page: var(--color-bg-1);
+	--surface-section: var(--color-bg-2);
+	--surface-subtle: var(--color-bg-3);
+	--surface-card: #fffbf5;
+	--surface-card-hover: #f7f3ec;
+	--surface-panel: #f8f4ee;
+	--surface-panel-strong: #ece4d8;
+	--surface-footer: #111111;
+	--surface-footer-text: #ffffff;
+	--surface-overlay: rgba(0, 0, 0, 0.55);
+	--surface-poster-default: linear-gradient(180deg, var(--surface-card) 0%, var(--surface-subtle) 100%);
+	--surface-poster-gloss: linear-gradient(180deg, rgba(255, 252, 247, 0.16) 0%, rgba(247, 239, 228, 0.08) 100%);
+	--surface-poster-vignette: radial-gradient(circle_at_center, transparent 0%, transparent 58%, rgba(0, 0, 0, 0.05) 100%);
+
+	--text-primary: var(--color-text-1);
+	--text-secondary: var(--color-text-2);
+	--text-muted: #6b5e4c;
+	--text-accent: var(--color-text-3);
+	--text-accent-strong: #5c3817;
+	--text-on-accent: #ffffff;
+
+	--border-subtle: #e0d5c3;
+	--border-strong: #c9b896;
+	--border-accent: #1c1812;
+
+	--shadow-soft: 0 10px 30px rgba(17, 17, 17, 0.08);
+	--shadow-soft-hover: 0 16px 36px rgba(17, 17, 17, 0.14);
+	--shadow-button: 0 10px 30px rgba(17, 17, 17, 0.16);
+	--shadow-button-hover: 0 18px 38px rgba(17, 17, 17, 0.22);
+	--shadow-elevated: 0 12px 36px rgba(98, 72, 32, 0.07);
+	--shadow-elevated-hover: 0 4px 32px rgba(100, 70, 30, 0.09);
+	--shadow-media-control: 0 8px 24px rgba(0, 0, 0, 0.14);
+	--shadow-media-control-hover: 0 12px 32px rgba(0, 0, 0, 0.22);
+	--shadow-media-poster: 0 18px 32px rgba(95, 39, 4, 0.18);
+	--shadow-overlay: 0 24px 60px rgba(0, 0, 0, 0.4);
+	--button-shine: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.16) 50%, transparent 80%);
+
+	--project-type-web-border: #d6c2a4;
+	--project-type-web-bg: #fff8ef;
+	--project-type-web-text: #9b672b;
+	--project-type-mobile-border: #b7caf3;
+	--project-type-mobile-bg: #f6f9ff;
+	--project-type-mobile-text: #3568d4;
+	--project-type-api-border: #c7d8c1;
+	--project-type-api-bg: #f2faf0;
+	--project-type-api-text: #3d7a49;
+
+	--project-category-test-case-border: #ead3c0;
+	--project-category-test-case-bg: #fffaf6;
+	--project-category-test-case-text: #8f5a2f;
+	--project-category-client-border: #c8d5f3;
+	--project-category-client-bg: #f6f8ff;
+	--project-category-client-text: #4a62c8;
+	--project-category-myself-border: #d9c7eb;
+	--project-category-myself-bg: #fbf8ff;
+	--project-category-myself-text: #7c58a8;
+
 	--bg-1: var(--color-bg-1);
 	--bg-2: var(--color-bg-2);
 	--bg-3: var(--color-bg-3);
@@ -58,6 +116,63 @@
 
 /* Dark Mode Override */
 [data-theme="dark"] {
+	--surface-page: var(--color-bg-1-dark);
+	--surface-section: var(--color-bg-2-dark);
+	--surface-subtle: var(--color-bg-3-dark);
+	--surface-card: #2a2420;
+	--surface-card-hover: #332d28;
+	--surface-panel: #26201c;
+	--surface-panel-strong: #312a24;
+	--surface-footer: #f4eee2;
+	--surface-footer-text: #111111;
+	--surface-overlay: rgba(0, 0, 0, 0.7);
+	--surface-poster-default: linear-gradient(180deg, #2f2924 0%, #24201c 100%);
+	--surface-poster-gloss: linear-gradient(180deg, rgba(244, 238, 226, 0.08) 0%, rgba(231, 225, 213, 0.04) 100%);
+	--surface-poster-vignette: radial-gradient(circle_at_center, transparent 0%, transparent 58%, rgba(255, 255, 255, 0.06) 100%);
+
+	--text-primary: var(--color-text-1-dark);
+	--text-secondary: var(--color-text-2-dark);
+	--text-muted: #b9ac95;
+	--text-accent: var(--color-text-3-dark);
+	--text-accent-strong: #f3d79c;
+	--text-on-accent: #111111;
+
+	--border-subtle: #4a4138;
+	--border-strong: #6d5b46;
+	--border-accent: #f4eee2;
+
+	--shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.24);
+	--shadow-soft-hover: 0 16px 36px rgba(0, 0, 0, 0.32);
+	--shadow-button: 0 10px 30px rgba(0, 0, 0, 0.3);
+	--shadow-button-hover: 0 18px 38px rgba(0, 0, 0, 0.4);
+	--shadow-elevated: 0 12px 36px rgba(0, 0, 0, 0.22);
+	--shadow-elevated-hover: 0 4px 32px rgba(0, 0, 0, 0.28);
+	--shadow-media-control: 0 8px 24px rgba(0, 0, 0, 0.18);
+	--shadow-media-control-hover: 0 12px 32px rgba(0, 0, 0, 0.28);
+	--shadow-media-poster: 0 18px 32px rgba(0, 0, 0, 0.22);
+	--shadow-overlay: 0 24px 60px rgba(0, 0, 0, 0.6);
+	--button-shine: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.12) 50%, transparent 80%);
+
+	--project-type-web-border: #6e5538;
+	--project-type-web-bg: #2d241d;
+	--project-type-web-text: #e9b87a;
+	--project-type-mobile-border: #3e5680;
+	--project-type-mobile-bg: #202734;
+	--project-type-mobile-text: #9ab9ff;
+	--project-type-api-border: #3f5943;
+	--project-type-api-bg: #202b21;
+	--project-type-api-text: #8dc19a;
+
+	--project-category-test-case-border: #6a4a36;
+	--project-category-test-case-bg: #2a221d;
+	--project-category-test-case-text: #f2c39a;
+	--project-category-client-border: #44527c;
+	--project-category-client-bg: #202536;
+	--project-category-client-text: #adc0ff;
+	--project-category-myself-border: #54406f;
+	--project-category-myself-bg: #26202f;
+	--project-category-myself-text: #d1b7ef;
+
 	--bg-1: var(--color-bg-1-dark);
 	--bg-2: var(--color-bg-2-dark);
 	--bg-3: var(--color-bg-3-dark);
@@ -71,6 +186,63 @@
 /* Automatic Dark Mode based on System Preference */
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme="light"]) {
+		--surface-page: var(--color-bg-1-dark);
+		--surface-section: var(--color-bg-2-dark);
+		--surface-subtle: var(--color-bg-3-dark);
+		--surface-card: #2a2420;
+		--surface-card-hover: #332d28;
+		--surface-panel: #26201c;
+		--surface-panel-strong: #312a24;
+		--surface-footer: #f4eee2;
+		--surface-footer-text: #111111;
+		--surface-overlay: rgba(0, 0, 0, 0.7);
+		--surface-poster-default: linear-gradient(180deg, #2f2924 0%, #24201c 100%);
+		--surface-poster-gloss: linear-gradient(180deg, rgba(244, 238, 226, 0.08) 0%, rgba(231, 225, 213, 0.04) 100%);
+		--surface-poster-vignette: radial-gradient(circle_at_center, transparent 0%, transparent 58%, rgba(255, 255, 255, 0.06) 100%);
+
+		--text-primary: var(--color-text-1-dark);
+		--text-secondary: var(--color-text-2-dark);
+		--text-muted: #b9ac95;
+		--text-accent: var(--color-text-3-dark);
+		--text-accent-strong: #f3d79c;
+		--text-on-accent: #111111;
+
+		--border-subtle: #4a4138;
+		--border-strong: #6d5b46;
+		--border-accent: #f4eee2;
+
+		--shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.24);
+		--shadow-soft-hover: 0 16px 36px rgba(0, 0, 0, 0.32);
+		--shadow-button: 0 10px 30px rgba(0, 0, 0, 0.3);
+		--shadow-button-hover: 0 18px 38px rgba(0, 0, 0, 0.4);
+		--shadow-elevated: 0 12px 36px rgba(0, 0, 0, 0.22);
+		--shadow-elevated-hover: 0 4px 32px rgba(0, 0, 0, 0.28);
+		--shadow-media-control: 0 8px 24px rgba(0, 0, 0, 0.18);
+		--shadow-media-control-hover: 0 12px 32px rgba(0, 0, 0, 0.28);
+		--shadow-media-poster: 0 18px 32px rgba(0, 0, 0, 0.22);
+		--shadow-overlay: 0 24px 60px rgba(0, 0, 0, 0.6);
+		--button-shine: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.12) 50%, transparent 80%);
+
+		--project-type-web-border: #6e5538;
+		--project-type-web-bg: #2d241d;
+		--project-type-web-text: #e9b87a;
+		--project-type-mobile-border: #3e5680;
+		--project-type-mobile-bg: #202734;
+		--project-type-mobile-text: #9ab9ff;
+		--project-type-api-border: #3f5943;
+		--project-type-api-bg: #202b21;
+		--project-type-api-text: #8dc19a;
+
+		--project-category-test-case-border: #6a4a36;
+		--project-category-test-case-bg: #2a221d;
+		--project-category-test-case-text: #f2c39a;
+		--project-category-client-border: #44527c;
+		--project-category-client-bg: #202536;
+		--project-category-client-text: #adc0ff;
+		--project-category-myself-border: #54406f;
+		--project-category-myself-bg: #26202f;
+		--project-category-myself-text: #d1b7ef;
+
 		--bg-1: var(--color-bg-1-dark);
 		--bg-2: var(--color-bg-2-dark);
 		--bg-3: var(--color-bg-3-dark);
@@ -91,8 +263,8 @@ html {
 
 body {
 	font-family: var(--font-primary);
-	background-color: var(--bg-1);
-	color: var(--text-1);
+	background-color: var(--surface-page);
+	color: var(--text-primary);
 	transition: background-color 0.3s ease, color 0.3s ease;
 	width: 100%;
 	height: 100%;
@@ -103,27 +275,27 @@ body {
    ============================================ */
 
 .bg-1 {
-	background-color: var(--bg-1);
+	background-color: var(--surface-page);
 }
 
 .bg-2 {
-	background-color: var(--bg-2);
+	background-color: var(--surface-section);
 }
 
 .bg-3 {
-	background-color: var(--bg-3);
+	background-color: var(--surface-subtle);
 }
 
 .text-1 {
-	color: var(--text-1);
+	color: var(--text-primary);
 }
 
 .text-2 {
-	color: var(--text-2);
+	color: var(--text-secondary);
 }
 
 .text-3 {
-	color: var(--text-3);
+	color: var(--text-accent);
 }
 
 .font-primary {

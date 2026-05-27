@@ -15,9 +15,9 @@ const sectionShell =
   "mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 sm:px-10 xl:px-0";
 ---
 
-<section id="projects" class="relative w-full overflow-hidden bg-[var(--bg-2)] py-24 sm:py-28 lg:py-2" data-projects-root>
+<section id="projects" class="relative w-full overflow-hidden bg-[var(--surface-section)] py-24 sm:py-28 lg:py-2" data-projects-root>
   <!-- Decorative dot pattern overlay -->
-  <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#a6895a33_1px,transparent_1px)] bg-[size:28px_28px] opacity-40"></div>
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--text-accent)_1px,transparent_1px)] bg-[size:28px_28px] opacity-40"></div>
 
  
 
@@ -28,12 +28,12 @@ const sectionShell =
     
 
       <!-- Title with highlighted word -->
-      <h3 class="max-w-[32rem] text-[2rem] font-bold leading-[1.04] tracking-[-0.06em] text-[#1c1812] sm:text-[2rem] lg:text-[2.25rem]">
+      <h3 class="max-w-[32rem] text-[2rem] font-bold leading-[1.04] tracking-[-0.06em] text-[var(--text-primary)] sm:text-[2rem] lg:text-[2.25rem]">
         {copy.title}
       </h3>
 
       <!-- Subtitle -->
-      <p class="mt-6 max-w-[30rem] text-[0.92rem] leading-[1.65] text-[#6b5e4c] sm:text-[0.95rem]">
+      <p class="mt-6 max-w-[30rem] text-[0.92rem] leading-[1.65] text-[var(--text-muted)] sm:text-[0.95rem]">
         {copy.description}
       </p>
     </div>
@@ -70,7 +70,7 @@ const sectionShell =
 
     <!-- Decorative bottom marker -->
     <div aria-hidden="true" class="flex justify-center">
-      <span class="inline-block h-1.5 w-1.5 rounded-full bg-[#9b7b3a]/50"></span>
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-[color-mix(in_srgb,var(--text-accent)_50%,transparent)]"></span>
     </div>
   </div>
 </section>

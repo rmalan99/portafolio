@@ -36,8 +36,8 @@ const expectations: Record<Locale, Expectations> = {
     contactTitle: />\s*Hablemos de tu proyecto\s*</i,
     footerCopyright: />\s*Powered by Alan Hidalgo\s*©\s*2025\s*</i,
     footerCta: />\s*Hablemos\s*</i,
-    footerLinks:
-      /w-full h-24 bg-black[\s\S]*github\.com\/rmalan99[\s\S]*linkedin\.com\/in\/alan-hidalgo-medina\//i,
+      footerLinks:
+        /w-full h-24 bg-\[var\(--surface-footer\)\][\s\S]*github\.com\/rmalan99[\s\S]*linkedin\.com\/in\/alan-hidalgo-medina\//i,
     contactForm: {
       name: 'placeholder="Nombre"',
       email: 'placeholder="Email"',
@@ -55,8 +55,8 @@ const expectations: Record<Locale, Expectations> = {
     contactTitle: />\s*Let(?:&#39;|')s talk about your project\s*</i,
     footerCopyright: />\s*Powered by Alan Hidalgo\s*©\s*2026\s*</i,
     footerCta: />\s*GET IN TOUCH\s*</i,
-    footerLinks:
-      /w-full h-24 bg-black[\s\S]*github\.com\/rmalan99[\s\S]*linkedin\.com\/in\/alan-hidalgo-medina\//i,
+      footerLinks:
+        /w-full h-24 bg-\[var\(--surface-footer\)\][\s\S]*github\.com\/rmalan99[\s\S]*linkedin\.com\/in\/alan-hidalgo-medina\//i,
     contactForm: {
       name: 'placeholder="Name"',
       email: 'placeholder="Email"',
