@@ -1,12 +1,18 @@
 ---
-export interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+type AnchorProps = HTMLAttributes<"a">;
+type NativeButtonProps = HTMLAttributes<"button">;
+
+export interface Props
+  extends Omit<AnchorProps, "class" | "href">,
+    Omit<NativeButtonProps, "class" | "type" | "disabled"> {
   variant?: "white" | "black";
   size?: "sm" | "md" | "lg";
   href?: string;
   type?: "button" | "submit" | "reset";
   class?: string;
   disabled?: boolean;
-  onclick?: () => void;
 }
 
 const {
@@ -16,75 +22,70 @@ const {
   type = "button",
   class: className = "",
   disabled = false,
-  onclick,
+  ...rest
 } = Astro.props;
 
 const baseClasses =
-  "inline-flex items-center justify-center font-bold transition-all duration-300 ease-out rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide";
+  "group relative inline-flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full border border-transparent font-primary text-center font-bold uppercase leading-none tracking-[0.12em] whitespace-nowrap select-none transition-all duration-300 [transition-timing-function:var(--ease-smooth)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-1)] disabled:pointer-events-none disabled:opacity-50";
 
 const variantClasses = {
   white:
-    "bg-white text-black hover:bg-gray-100 hover:shadow-xl hover:scale-[1.02] focus:ring-gray-300",
+    "bg-white text-black shadow-[0_10px_30px_rgba(17,17,17,0.08)] hover:-translate-y-0.5 hover:bg-[#f7f3ec] hover:shadow-[0_16px_36px_rgba(17,17,17,0.14)] focus-visible:ring-black/20",
   black:
-    "bg-black text-white hover:bg-gray-800 hover:shadow-xl hover:scale-[1.02] focus:ring-gray-900",
+    "bg-[var(--button-bg)] text-[var(--button-text)] shadow-[0_10px_30px_rgba(17,17,17,0.16)] hover:-translate-y-0.5 hover:opacity-95 hover:shadow-[0_18px_38px_rgba(17,17,17,0.22)] focus-visible:ring-black/25",
 };
 
 const sizeClasses = {
-  sm: "px-6 py-3 text-xs",
-  md: "px-8 py-4 text-sm",
-  lg: "px-10 py-5 text-base",
+  sm: "min-h-11 px-5 text-[0.68rem] sm:px-6",
+  md: "min-h-12 px-6 text-[0.72rem] sm:px-7",
+  lg: "min-h-14 px-7 text-[0.78rem] sm:px-9",
 };
 
-const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+const stateClasses = disabled ? "cursor-not-allowed" : "active:scale-[0.985]";
+const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${stateClasses} ${className}`;
 
-const Tag = href ? "a" : "button";
+const isLink = Boolean(href);
+const linkHref = disabled ? undefined : href;
 ---
 
 {
-  Tag === "a" ? (
-    <a href={href} class={classes}>
-      <slot />
+  isLink ? (
+    <a
+      href={linkHref}
+      class={classes}
+      aria-disabled={disabled ? "true" : undefined}
+      tabindex={disabled ? "-1" : undefined}
+      {...rest}
+    >
+      <span class="relative z-10 inline-flex items-center justify-center gap-2">
+        <slot />
+      </span>
     </a>
   ) : (
-    <button onclick={onclick} type={type} class={classes} disabled={disabled}>
-      <slot />
+    <button type={type} class={classes} disabled={disabled} {...rest}>
+      <span class="relative z-10 inline-flex items-center justify-center gap-2">
+        <slot />
+      </span>
     </button>
   )
 }
 
 <style>
-  /* Animación adicional para el efecto hover */
-  a,
-  button {
-    position: relative;
-    overflow: hidden;
-  }
-
-  a::before,
-  button::before {
+  a::after,
+  button::after {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    transform: translate(-50%, -50%);
-    transition:
-      width 0.6s,
-      height 0.6s;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.16) 50%, transparent 80%);
+    transform: translateX(-135%);
+    transition: transform 0.7s var(--ease-smooth);
+    pointer-events: none;
   }
 
-  a:hover::before,
-  button:hover::before {
-    width: 300px;
-    height: 300px;
+  a:hover::after,
+  button:hover::after,
+  a:focus-visible::after,
+  button:focus-visible::after {
+    transform: translateX(135%);
   }
-
-  /* Efecto de presión */
-  a:active,
-  button:active {
-    transform: scale(0.98);
-  }
-</style>
+ </style>
