@@ -14,7 +14,7 @@ export function ensureBuild() {
     return;
   }
 
-  execSync('npm run build', {
+  execSync('pnpm build', {
     cwd: projectRoot,
     stdio: 'pipe',
   });
