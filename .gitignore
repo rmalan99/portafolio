@@ -28,3 +28,4 @@ pnpm-debug.log*
 .agents
 .atl
 .playwright-cli
+.playwright-mcp
