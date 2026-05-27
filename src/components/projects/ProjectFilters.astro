@@ -1,0 +1,131 @@
+---
+interface FilterOption {
+  label: string;
+  value: "all" | "web" | "mobile" | "api";
+}
+
+interface Props {
+  filters: FilterOption[];
+  activeValue?: FilterOption["value"];
+}
+
+const { filters, activeValue = "all" } = Astro.props;
+
+const filterPill =
+  "inline-flex min-h-[2.6rem] items-center justify-center rounded-full border px-5 text-[0.78rem] font-medium tracking-[-0.01em] transition-all duration-[350ms] [transition-timing-function:var(--ease-smooth)]";
+const activeClasses = "border-[#1c1812] bg-[#1c1812] text-white shadow-[0_4px_20px_rgba(28,24,18,0.14)]";
+const inactiveClasses =
+  "border-[#c9b896]/40 bg-transparent text-[#6b5e4c] hover:border-[#c9b896]/80 hover:bg-[#ede4d4]/50 hover:text-[#3d3220]";
+---
+
+<div class="flex flex-wrap gap-3" data-project-filters>
+  {
+    filters.map((filter) => {
+      const isActive = filter.value === activeValue;
+
+      return (
+        <button
+          type="button"
+          data-project-filter-button
+          data-filter-value={filter.value}
+          aria-pressed={isActive ? "true" : "false"}
+          class:list={[filterPill, isActive ? activeClasses : inactiveClasses]}
+        >
+          {filter.label}
+        </button>
+      );
+    })
+  }
+</div>
+
+<script is:inline>
+  (() => {
+    if (typeof document === "undefined") return;
+
+    const setupProjectFilters = (root) => {
+      if (!root || root.dataset.filtersInitialized === "true") return;
+
+      const buttons = Array.from(root.querySelectorAll("[data-project-filter-button]"));
+      const section = root.closest("[data-projects-root]");
+      const cards = Array.from(section?.querySelectorAll("[data-project-card]") ?? []);
+
+      if (!buttons.length || !cards.length) return;
+
+      const ACTIVE_CLASSES = {
+        add: [
+          "border-[#1c1812]",
+          "bg-[#1c1812]",
+          "text-white",
+          "shadow-[0_4px_20px_rgba(28,24,18,0.14)]",
+        ],
+        remove: [
+          "border-[#c9b896]/40",
+          "bg-transparent",
+          "text-[#6b5e4c]",
+          "hover:border-[#c9b896]/80",
+          "hover:bg-[#ede4d4]/50",
+          "hover:text-[#3d3220]",
+        ],
+      };
+
+      const INACTIVE_CLASSES = {
+        add: [
+          "border-[#c9b896]/40",
+          "bg-transparent",
+          "text-[#6b5e4c]",
+          "hover:border-[#c9b896]/80",
+          "hover:bg-[#ede4d4]/50",
+          "hover:text-[#3d3220]",
+        ],
+        remove: [
+          "border-[#1c1812]",
+          "bg-[#1c1812]",
+          "text-white",
+          "shadow-[0_4px_20px_rgba(28,24,18,0.14)]",
+        ],
+      };
+
+      const setActiveStyles = (button, active) => {
+        button.setAttribute("aria-pressed", active ? "true" : "false");
+        const classes = active ? ACTIVE_CLASSES : INACTIVE_CLASSES;
+        for (const cls of classes.remove) {
+          button.classList.remove(cls);
+        }
+        for (const cls of classes.add) {
+          button.classList.add(cls);
+        }
+      };
+
+      const applyFilter = (value) => {
+        buttons.forEach((button) => {
+          setActiveStyles(button, button.dataset.filterValue === value);
+        });
+
+        cards.forEach((card) => {
+          const shouldShow = value === "all" || card.dataset.projectType === value;
+          card.toggleAttribute("hidden", !shouldShow);
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const value = button.dataset.filterValue ?? "all";
+          applyFilter(value);
+        });
+      });
+
+      root.dataset.filtersInitialized = "true";
+      applyFilter(root.querySelector("[data-project-filter-button][aria-pressed='true']")?.dataset.filterValue ?? "all");
+    };
+
+    const init = () => {
+      document.querySelectorAll("[data-project-filters]").forEach(setupProjectFilters);
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init, { once: true });
+    } else {
+      init();
+    }
+  })();
+</script>

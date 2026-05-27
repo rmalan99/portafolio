@@ -1,55 +1,76 @@
 ---
-import useLang from "@utils/useLang";
-import Button from "@components/buttons/Button.astro";
-import projects from "@consts/projects";
+import ProjectShowcase from "@components/projects/ProjectShowcase.astro";
+import ProjectFilters from "@components/projects/ProjectFilters.astro";
+import { projectSectionCopy, PROJECTS } from "@consts/projects";
 
-const { t } = useLang(Astro.url);
+const isSpanish = Astro.url.pathname.startsWith("/es");
+const copy = isSpanish ? projectSectionCopy.es : projectSectionCopy.en;
+
+const filterOptions = copy.filters.map((label: string, idx: number) => {
+  const values = ["all", "web", "mobile", "api"] as const;
+  return { label, value: values[idx] ?? "all" };
+});
+
+const sectionShell =
+  "mx-auto flex w-full max-w-7xl flex-col gap-12 px-6 sm:px-10 xl:px-0";
 ---
 
-<section id="projects" class="w-full h-vh bg-2 p-0 sm:p-10">
-  <div
-    class="sm:max-w-7xl mx-auto px-6 sm:px-10 xl:px-0 py-10 grid grid-cols-1 gap-10"
-  >
-    <div class="flex flex-col gap-3">
-      <h4 class="text-3xl font-bold text-center">{t("projects.title")}</h4>
-      <p class="text-center text-2 sm:w-4/4 md:w-3/4 lg:w-2/4 mx-auto">
-        {t("projects.description")}
+<section id="projects" class="relative w-full overflow-hidden bg-[var(--bg-2)] py-24 sm:py-28 lg:py-2" data-projects-root>
+  <!-- Decorative dot pattern overlay -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,#a6895a33_1px,transparent_1px)] bg-[size:28px_28px] opacity-40"></div>
+
+ 
+
+  <div class={sectionShell}>
+    <!-- Section Header -->
+    <div class="relative flex flex-col items-center text-center">
+      <!-- Subtle sketch accent above eyebrow -->
+    
+
+      <!-- Title with highlighted word -->
+      <h3 class="max-w-[32rem] text-[2rem] font-bold leading-[1.04] tracking-[-0.06em] text-[#1c1812] sm:text-[2rem] lg:text-[2.25rem]">
+        {copy.title}
+      </h3>
+
+      <!-- Subtitle -->
+      <p class="mt-6 max-w-[30rem] text-[0.92rem] leading-[1.65] text-[#6b5e4c] sm:text-[0.95rem]">
+        {copy.description}
       </p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+    <!-- Filters -->
+    <div class="flex justify-center">
+      <ProjectFilters filters={filterOptions} />
+    </div>
+
+    <!-- Project Grid -->
+    <div class="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-10">
       {
-        projects.map((project) => (
-          <div class="flex flex-col gap-3 bg-3 rounded-md relative">
-            <span class="px-2 py-1 rounded-full text-xs bg-black text-white absolute top-4 right-4">
-              {project.isMockup
-                ? t("projects.badges.mockup")
-                : t("projects.badges.real")}
-            </span>
-            <div class="flex  gap-2 flex-col ">
-              <img
-                src={project.image}
-                alt={t(`projects.items.${project.key}.name`)}
-                class="w-full h-40 object-cover"
-              />
-            </div>
-            <div class="flex flex-col gap-2 p-4">
-              <h6 class="text-md font-bold">
-                {t(`projects.items.${project.key}.name`)}
-              </h6>
-              <p class="text-sm">
-                {t(`projects.items.${project.key}.description`)}
-              </p>
-              <div class="flex items-center justify-end gap-2">
-                <Button href={project.link} variant="black" size="sm">
-                  {t("projects.cta")}
-                </Button>
-              </div>
-            </div>
-          </div>
-        ))
+        PROJECTS.map((project) => {
+          const description = isSpanish ? project.descriptionEs : project.descriptionEn;
+          const typeLabel = copy.projectType[project.type];
+          const categoryLabel = copy.projectCategory[project.category];
+
+          return (
+            <ProjectShowcase
+              project={project}
+              description={description}
+              typeLabel={typeLabel}
+              categoryLabel={categoryLabel}
+              sourceLabel={copy.source}
+              demoLabel={copy.demo}
+              mediaLabel={copy.mediaLabel}
+              playLabel={copy.playLabel}
+              closeLabel={copy.closeLabel}
+            />
+          );
+        })
       }
+    </div>
+
+    <!-- Decorative bottom marker -->
+    <div aria-hidden="true" class="flex justify-center">
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-[#9b7b3a]/50"></span>
     </div>
   </div>
 </section>
-
-<style></style>

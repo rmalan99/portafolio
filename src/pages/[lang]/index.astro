@@ -5,6 +5,7 @@ import HomeAbout from "@pages-components/home/HomeAbout.astro";
 import HomeHardSkills from "@pages-components/home/HomeHardSkills.astro";
 import HomeExperience from "@pages-components/home/HomeExperience.astro";
 import HomeContact from "@pages-components/home/HomeContact.astro";
+import HomeProject from "@pages-components/home/HomeProject.astro";
 
 export function getStaticPaths() {
   return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
@@ -16,6 +17,6 @@ export function getStaticPaths() {
   <HomeAbout />
   <HomeHardSkills />
   <HomeExperience />
+  <HomeProject />
   <HomeContact />
 </Layout>
-
