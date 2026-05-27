@@ -1,3 +1,6 @@
+# downloaded assets
+public/videos/
+
 # build output
 dist/
 
@@ -22,3 +25,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+.agents
+.atl
+.playwright-cli
