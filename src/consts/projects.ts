@@ -1,12 +1,14 @@
 export type ProjectType = "web" | "mobile" | "api";
 export type ProjectCategory = "test-case" | "product/client" | "product/myself";
 export type ProjectCardSize = "large" | "small";
+export type ProjectLocale = "es" | "en";
 
 export type ProjectMedia =
   | { kind: "image"; src: string; alt: string }
   | {
       kind: "video";
       src: string;
+      sources?: Partial<Record<ProjectLocale, string>>;
       poster?: string;
       posterBackground?: string;
       posterSize?: string;
@@ -110,6 +112,10 @@ export const PROJECTS: ProjectCard[] = [
     media: {
       kind: "video",
       src: "/videos/le-mise-real-showcase.es.mp4",
+      sources: {
+        es: "/videos/le-mise-real-showcase.es.mp4",
+        en: "/videos/le-mise-real-showcase.en.mp4",
+      },
       title: "Le Mise showcase",
       poster: "https://raw.githubusercontent.com/rmalan99/le-mise-mobile-demo/main/public/app-icon.png",
       posterBackground: "var(--surface-poster-default)",

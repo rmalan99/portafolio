@@ -4,6 +4,7 @@ import ProjectFilters from "@components/projects/ProjectFilters.astro";
 import { projectSectionCopy, PROJECTS } from "@consts/projects";
 
 const isSpanish = Astro.url.pathname.startsWith("/es");
+const locale = isSpanish ? "es" : "en";
 const copy = isSpanish ? projectSectionCopy.es : projectSectionCopy.en;
 
 const filterOptions = copy.filters.map((label: string, idx: number) => {
@@ -50,10 +51,20 @@ const sectionShell =
           const description = isSpanish ? project.descriptionEs : project.descriptionEn;
           const typeLabel = copy.projectType[project.type];
           const categoryLabel = copy.projectCategory[project.category];
+          const localizedProject =
+            project.media.kind === "video" && project.media.sources?.[locale]
+              ? {
+                  ...project,
+                  media: {
+                    ...project.media,
+                    src: project.media.sources[locale],
+                  },
+                }
+              : project;
 
           return (
             <ProjectShowcase
-              project={project}
+              project={localizedProject}
               description={description}
               typeLabel={typeLabel}
               categoryLabel={categoryLabel}
