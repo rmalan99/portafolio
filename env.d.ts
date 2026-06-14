@@ -4,6 +4,8 @@ declare function myFunction(): boolean;
 
 interface ImportMetaEnv {
   readonly ASTRO_PUBLIC_RECAPTCHA_SITE_KEY: string;
+  readonly PUBLIC_WEB3FORMS_KEY?: string;
+  readonly PUBLIC_WEB3FORMS_ACCESS_KEY: string;
   readonly RECAPTCHA_SECRET_KEY: string;
   readonly RECAPTCHA_MIN_SCORE?: string;
 }

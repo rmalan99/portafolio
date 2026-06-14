@@ -82,23 +82,23 @@ export const projectSectionCopy = {
 } as const;
 
 export const PROJECTS: ProjectCard[] = [
-  {
-    title: "RemaxRD",
-    type: "web",
-    category: "product/client",
-    descriptionEs:
-      "Plataforma inmobiliaria moderna para búsqueda de propiedades, captación de leads y gestión comercial con una experiencia enfocada en conversión.",
-    descriptionEn:
-      "Modern real estate platform for property search, lead capture, and sales management with a conversion-focused experience.",
-    technologies: ["Frontend", "Next.js", "MUI", "TanStack", "Redux"],
-    overviewUrl: "https://remaxrd.com/",
-    media: {
-      kind: "image",
-      src: "/images/image.png",
-      alt: "RemaxRD dashboard preview",
-    },
-    size: "large",
-  },
+  // {
+  //   title: "RemaxRD",
+  //   type: "web",
+  //   category: "product/client",
+  //   descriptionEs:
+  //     "Plataforma inmobiliaria moderna para búsqueda de propiedades, captación de leads y gestión comercial con una experiencia enfocada en conversión.",
+  //   descriptionEn:
+  //     "Modern real estate platform for property search, lead capture, and sales management with a conversion-focused experience.",
+  //   technologies: ["Frontend", "Next.js", "MUI", "TanStack", "Redux"],
+  //   overviewUrl: "https://remaxrd.com/",
+  //   media: {
+  //     kind: "image",
+  //     src: "/images/image.png",
+  //     alt: "RemaxRD dashboard preview",
+  //   },
+  //   size: "large",
+  // },
   {
     title: "Le Mise",
     type: "mobile",

@@ -1,10 +1,13 @@
 const form = document.querySelector<HTMLFormElement>("#contact-form");
+const web3FormsAccessKey =
+  import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ??
+  import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
 if (form) {
   const statusModal = document.querySelector<HTMLDialogElement>("[data-status-modal]");
   const statusMessage = statusModal?.querySelector<HTMLElement>("[data-status-message]");
   const closeButton = statusModal?.querySelector<HTMLButtonElement>("[data-status-close]");
-  const emailLink = document.querySelector<HTMLAnchorElement>('a[href^="mailto:"]');
+  const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
 
   const fields = {
     name: form.querySelector<HTMLInputElement>('#contact-name'),
@@ -72,7 +75,7 @@ if (form) {
     field?.addEventListener('input', () => clearFieldError(fieldName as keyof typeof fields));
   });
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const honeypot = form.querySelector<HTMLInputElement>('input[name="company"]');
@@ -111,30 +114,50 @@ if (form) {
       return;
     }
 
-    const emailHref = emailLink?.getAttribute('href');
-    if (!emailHref) {
+    if (!web3FormsAccessKey) {
+      console.error(
+        'Missing PUBLIC_WEB3FORMS_ACCESS_KEY or PUBLIC_WEB3FORMS_KEY env variable.'
+      );
       openStatus(messages.error);
       return;
     }
 
-    const [mailtoBase, queryString = ''] = emailHref.split('?');
-    const params = new URLSearchParams(queryString);
-    const existingSubject = params.get('subject') ?? '';
-    const subject = existingSubject || 'Portfolio contact';
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      '',
-      message,
-    ].join('\n');
+    const originalLabel = submitButton?.textContent ?? '';
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
+    }
 
-    const nextParams = new URLSearchParams({
-      subject,
-      body,
-    });
+    try {
+      const formData = new FormData(form);
+      formData.append('access_key', web3FormsAccessKey);
+      formData.append('subject', 'Portfolio contact');
 
-    window.location.href = `${mailtoBase}?${nextParams.toString()}`;
-    openStatus(messages.success);
-    form.reset();
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message ?? messages.error);
+      }
+
+      openStatus(messages.success);
+      form.reset();
+    } catch (error) {
+      console.error('Contact form submission failed.', error);
+      openStatus(error instanceof Error ? error.message : messages.error);
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.removeAttribute('aria-busy');
+        submitButton.textContent = originalLabel;
+      }
+    }
   });
 }
