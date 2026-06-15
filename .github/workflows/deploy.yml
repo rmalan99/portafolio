@@ -44,6 +44,9 @@ jobs:
         run: pnpm build
         env:
           NODE_ENV: production
+          PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ vars.PUBLIC_WEB3FORMS_ACCESS_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          BASE_PATH: ${{ vars.BASE_PATH }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
