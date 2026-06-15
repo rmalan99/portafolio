@@ -1,7 +1,5 @@
 const form = document.querySelector<HTMLFormElement>("#contact-form");
-const web3FormsAccessKey =
-  import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ??
-  import.meta.env.PUBLIC_WEB3FORMS_KEY;
+const web3FormsAccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY;
 
 if (form) {
   const statusModal = document.querySelector<HTMLDialogElement>("[data-status-modal]");
@@ -115,9 +113,7 @@ if (form) {
     }
 
     if (!web3FormsAccessKey) {
-      console.error(
-        'Missing PUBLIC_WEB3FORMS_ACCESS_KEY or PUBLIC_WEB3FORMS_KEY env variable.'
-      );
+      console.error('Missing PUBLIC_WEB3FORMS_ACCESS_KEY env variable.');
       openStatus(messages.error);
       return;
     }
