@@ -1,7 +1,8 @@
 ---
 import ProjectShowcase from "@components/projects/ProjectShowcase.astro";
 import ProjectFilters from "@components/projects/ProjectFilters.astro";
-import { projectSectionCopy, PROJECTS } from "@consts/projects";
+import { projectSectionCopy } from "@consts/projects";
+import { loadProjectCards } from "@utils/projects";
 
 const isSpanish = Astro.url.pathname.startsWith("/es");
 const locale = isSpanish ? "es" : "en";
@@ -11,6 +12,8 @@ const filterOptions = copy.filters.map((label: string, idx: number) => {
   const values = ["all", "web", "mobile", "api"] as const;
   return { label, value: values[idx] ?? "all" };
 });
+
+const projects = await loadProjectCards();
 
 
 const sectionShell =
@@ -48,7 +51,7 @@ const sectionShell =
     <!-- Project Grid -->
     <div class="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-10">
       {
-        PROJECTS.map((project) => {
+        projects.map((project) => {
           const description = isSpanish ? project.descriptionEs : project.descriptionEn;
           const typeLabel = copy.projectType[project.type];
           const categoryLabel = copy.projectCategory[project.category];

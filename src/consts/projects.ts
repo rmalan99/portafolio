@@ -81,51 +81,6 @@ export const projectSectionCopy = {
   },
 } as const;
 
-export const PROJECTS: ProjectCard[] = [
-  // {
-  //   title: "RemaxRD",
-  //   type: "web",
-  //   category: "product/client",
-  //   descriptionEs:
-  //     "Plataforma inmobiliaria moderna para búsqueda de propiedades, captación de leads y gestión comercial con una experiencia enfocada en conversión.",
-  //   descriptionEn:
-  //     "Modern real estate platform for property search, lead capture, and sales management with a conversion-focused experience.",
-  //   technologies: ["Frontend", "Next.js", "MUI", "TanStack", "Redux"],
-  //   overviewUrl: "https://remaxrd.com/",
-  //   media: {
-  //     kind: "image",
-  //     src: "/images/image.png",
-  //     alt: "RemaxRD dashboard preview",
-  //   },
-  //   size: "large",
-  // },
-  {
-    title: "Le Mise",
-    type: "mobile",
-    category: "test-case",
-    descriptionEs:
-      "Experiencia móvil de recetas diseñada para reducir la fricción al decidir qué cocinar, con descubrimiento por categorías, lectura guiada y modo de cocción paso a paso.",
-    descriptionEn:
-      "Mobile recipe experience designed to reduce friction when deciding what to cook, with category discovery, guided reading, and step-by-step cooking mode.",
-    technologies: ["React", "Ionic", "Tailwind CSS", "Zustand", "TypeScript", "Vite"],
-    githubUrl: "https://github.com/rmalan99/le-mise-mobile-demo",
-    media: {
-      kind: "video",
-      src: "/videos/le-mise-real-showcase.es.mp4",
-      sources: {
-        es: "/videos/le-mise-real-showcase.es.mp4",
-        en: "/videos/le-mise-real-showcase.en.mp4",
-      },
-      title: "Le Mise showcase",
-      poster: "https://raw.githubusercontent.com/rmalan99/le-mise-mobile-demo/main/public/app-icon.png",
-      posterBackground: "var(--surface-poster-default)",
-      posterSize: "260px",
-    },
-    size: "small",
-  },
- 
-];
-
 export const projectTypeStyles = {
   web: "border-[var(--project-type-web-border)] bg-[var(--project-type-web-bg)] text-[var(--project-type-web-text)]",
   mobile: "border-[var(--project-type-mobile-border)] bg-[var(--project-type-mobile-bg)] text-[var(--project-type-mobile-text)]",
