@@ -1,0 +1,10 @@
+[
+  {
+    "kind": "explicit",
+    "github": "rmalan99/le-mise-mobile-demo",
+    "branch": "main",
+    "overrides": {
+      "size": "small"
+    }
+  }
+]
