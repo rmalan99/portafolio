@@ -7,6 +7,9 @@ dist/
 # generated types
 .astro/
 
+# fetched project manifests cache
+.cache/
+
 # dependencies
 node_modules/
 
