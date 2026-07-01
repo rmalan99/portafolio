@@ -115,9 +115,16 @@ const stats = {
   cached: 0,
   cacheFallback: 0,
   failed: 0,
+  fetchedFresh: 0,
   discoveryDiscovered: 0,
   discoverySkipped: 0,
 };
+
+const FORCE_REFRESH_FLAGS = new Set(["--force", "--refresh", "-f"]);
+const cliArgs = process.argv.slice(2);
+const forceRefresh =
+  cliArgs.some((arg) => FORCE_REFRESH_FLAGS.has(arg)) ||
+  process.env.SYNC_FORCE_REFRESH === "1";
 
 async function readIndex() {
   const content = await readFile(indexPath, "utf8");
@@ -196,7 +203,8 @@ async function ingestManifest({ github, branch }) {
   const [owner, repo] = github.split("/");
   const repoKey = `${owner}__${repo}`;
   const cache = await readCache(repoKey);
-  const result = await fetchManifest(github, branch, cache?.etag);
+  const etag = forceRefresh ? null : cache?.etag;
+  const result = await fetchManifest(github, branch, etag);
 
   if (result.status === "not-modified") {
     console.log(`✓ ${github} (cached, etag match)`);
@@ -232,8 +240,13 @@ async function ingestManifest({ github, branch }) {
   }
 
   await writeCache(repoKey, branch, validation.data, result.etag);
-  console.log(`✓ ${github} (fetched)`);
-  stats.fetched++;
+  if (forceRefresh) {
+    console.log(`↻ ${github} (force refresh)`);
+    stats.fetchedFresh++;
+  } else {
+    console.log(`✓ ${github} (fetched)`);
+    stats.fetched++;
+  }
 }
 
 async function listOwnerRepos({ owner, topic, includeForks, includeArchived }) {
@@ -299,7 +312,7 @@ async function processDiscoveryEntry(entry) {
     try {
       const [owner, repoName] = github.split("/");
       const cache = await readCache(`${owner}__${repoName}`);
-      const probe = await fetchManifest(github, branch, cache?.etag);
+      const probe = await fetchManifest(github, branch, forceRefresh ? null : cache?.etag);
       if (probe.status === "error" && !cache) {
         stats.discoveryDiscovered++;
         continue;
@@ -346,8 +359,11 @@ async function syncProjectManifests() {
   }
 
   console.log(
-    `\nSync summary: ${stats.fetched} fetched, ${stats.cached} cached, ${stats.cacheFallback} cache-fallback, ${stats.failed} skipped, ${stats.discoveryDiscovered} discovered, ${stats.discoverySkipped} discovery-skipped`,
+    `\nSync summary: ${stats.fetched} fetched, ${stats.fetchedFresh} force-refreshed, ${stats.cached} cached, ${stats.cacheFallback} cache-fallback, ${stats.failed} skipped, ${stats.discoveryDiscovered} discovered, ${stats.discoverySkipped} discovery-skipped`,
   );
+  if (forceRefresh) {
+    console.log("Force refresh mode: cached ETags were ignored.");
+  }
 }
 
 syncProjectManifests().catch((error) => {
