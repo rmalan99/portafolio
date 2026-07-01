@@ -155,7 +155,14 @@ async function writeCache(repoKey, branch, manifest, etag) {
 async function fetchManifest(github, branch, etag) {
   const [owner, repo] = github.split("/");
   const url = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/.portfolio/manifest.json`;
-  const headers = { "User-Agent": "portafolio-sync" };
+  // Force `Accept-Encoding: identity` so GitHub returns a strong, content-derived
+  // ETag. Node's default fetch sends `Accept-Encoding: gzip, deflate, br` and
+  // GitHub responds with a weak ETag that does NOT change when the underlying
+  // blob content changes, which breaks conditional refresh.
+  const headers = {
+    "User-Agent": "portafolio-sync",
+    "Accept-Encoding": "identity",
+  };
   if (etag) headers["If-None-Match"] = etag;
 
   const response = await fetch(url, { headers });
